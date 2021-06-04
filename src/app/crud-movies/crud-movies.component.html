@@ -1,1 +1,26 @@
-<p>crud-movies works!</p>
+<h3> Création film: </h3>
+
+<form id="form" [formGroup]="movie">
+    <div class="p-fluid">
+        <div class="p-field">
+            <label for="title">Titre</label>
+            <input id="title" type="text" formControlName="title" pInputText>
+        </div>
+        <div class="p-field">
+            <label for="price">Prix</label>
+            <input id="price" type="text" formControlName="price" pInputText>
+        </div>
+        <div class="p-field">
+            <label for="yearRequired">Age requis</label>
+            <input id="yearRequired" type="text" formControlName="yearRequired" pInputText>
+        </div>
+        <div class="p-field"></div>
+        <div class="p-field p-col-12 p-md-4">
+            <label for="releaseDate">Date de sortie</label>
+
+            <p-calendar [(ngModel)]="date3" [showIcon]="true" inputId="icon" formControlName="releaseDate"></p-calendar>
+        </div>
+    </div>
+    <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-check"
+        (click)="saveMovies();" [disabled]="!movie.valid"></button>
+</form>

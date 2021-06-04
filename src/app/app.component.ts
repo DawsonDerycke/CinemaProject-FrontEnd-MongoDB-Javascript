@@ -10,25 +10,26 @@ import {MegaMenuItem,MenuItem} from 'primeng/api';
 export class AppComponent {
   items!: MegaMenuItem[];
 
+
   ngOnInit() {
       this.items = [
           {
-              label: 'Videos', icon: 'pi pi-fw pi-video',
+              label: 'Movies', icon: 'pi pi-fw pi-video',
               items: [
                   [
                       {
-                          label: 'Video 1',
-                          items: [{label: 'Video 1.1', routerLink: 'movies'}]
+                          label: 'Read',
+                          items: [{label: 'List movies', routerLink: 'movies'}]
                       },
                       {
-                          label: 'Video 2',
-                          items: [{label: 'Video 2.1', routerLink: 'searchMovies'}]
+                          label: 'Search',
+                          items: [{label: 'Search movie', routerLink: 'searchMovies'}]
                       }
                   ],
                   [
                       {
-                          label: 'Video 3',
-                          items: [{label: 'Video 3.1', routerLink: 'crudMovies'}]
+                          label: 'Crud Movies',
+                          items: [{label: 'Crud Movies', routerLink: 'crudMovies'}]
                       },
                   ]
               ]
