@@ -14,7 +14,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar'; 
+import { TableModule } from 'primeng/table';
 
 // Component
 import { AppRoutingModule } from './app-routing.module';
@@ -22,13 +23,25 @@ import { AppComponent } from './app.component';
 import { ListMoviesComponent } from './list-movies/list-movies.component';
 import { SearchMoviesComponent } from './search-movies/search-movies.component';
 import { CrudMoviesComponent } from './crud-movies/crud-movies.component';
+import { CrudUsersComponent } from './crud-users/crud-users.component';
+import { ListUsersComponent } from './list-users/list-users.component';
+import { SearchUsersComponent } from './search-users/search-users.component';
+import { CrudCategoriesComponent } from './crud-categories/crud-categories.component';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
+import { SearchCategoriesComponent } from './search-categories/search-categories.component';
 
 @NgModule({
   declarations: [ 
     AppComponent,
     ListMoviesComponent,
     SearchMoviesComponent,
-    CrudMoviesComponent
+    CrudMoviesComponent,
+    CrudUsersComponent,
+    ListUsersComponent,
+    SearchUsersComponent,
+    CrudCategoriesComponent,
+    ListCategoriesComponent,
+    SearchCategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +58,7 @@ import { CrudMoviesComponent } from './crud-movies/crud-movies.component';
     DropdownModule,
     InputTextareaModule,
     CalendarModule,
+    TableModule,
     AppRoutingModule
   ],
   providers: [],

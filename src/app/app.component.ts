@@ -24,14 +24,12 @@ export class AppComponent {
                       {
                           label: 'Search',
                           items: [{label: 'Search movie', routerLink: 'searchMovies'}]
-                      }
-                  ],
-                  [
+                      },
                       {
-                          label: 'Crud Movies',
+                          label: 'Crud',
                           items: [{label: 'Crud Movies', routerLink: 'crudMovies'}]
                       },
-                  ]
+                  ],
               ]
           },
           {
@@ -39,59 +37,37 @@ export class AppComponent {
               items: [
                   [
                       {
-                          label: 'User 1',
-                          items: [{label: 'User 1.1'}, {label: 'User 1.2'}]
+                          label: 'Read',
+                          items: [{label: 'List users', routerLink:'users'},]
                       },
                       {
-                          label: 'User 2',
-                          items: [{label: 'User 2.1'}, {label: 'User 2.2'}]
+                          label: 'Search',
+                          items: [{label: 'Search user', routerLink:'searchUsers'},]
+                      },
+                      {
+                          label: 'Crud',
+                          items: [{label: 'Crud users', routerLink:'crudUsers'},]
                       },
                   ],
-                  [
-                      {
-                          label: 'User 3',
-                          items: [{label: 'User 3.1'}, {label: 'User 3.2'}]
-                      },
-                      {
-                          label: 'User 4',
-                          items: [{label: 'User 4.1'}, {label: 'User 4.2'}]
-                      }
-                  ],
-                  [
-                      {
-                          label: 'User 5',
-                          items: [{label: 'User 5.1'}, {label: 'User 5.2'}]
-                      },
-                      {
-                          label: 'User 6',
-                          items: [{label: 'User 6.1'}, {label: 'User 6.2'}]
-                      }
-                  ]
               ]
           },
           {
-              label: 'Events', icon: 'pi pi-fw pi-calendar',
+              label: 'Categories', icon: 'pi pi-fw pi-book',
               items: [
                   [
                       {
-                          label: 'Event 1',
-                          items: [{label: 'Event 1.1'}, {label: 'Event 1.2'}]
+                          label: 'Read',
+                          items: [{label: 'List categories', routerLink:'categories'},]
                       },
                       {
-                          label: 'Event 2',
-                          items: [{label: 'Event 2.1'}, {label: 'Event 2.2'}]
-                      }
+                          label: 'Search',
+                          items: [{label: 'Search category', routerLink:'searchCategories'},]
+                      },
+                      {
+                          label: 'Crud',
+                          items: [{label: 'Crud category', routerLink:'crudCategories'},]
+                      },
                   ],
-                  [
-                      {
-                          label: 'Event 3',
-                          items: [{label: 'Event 3.1'}, {label: 'Event 3.2'}]
-                      },
-                      {
-                          label: 'Event 4',
-                          items: [{label: 'Event 4.1'}, {label: 'Event 4.2'}]
-                      }
-                  ]
               ]
           },
           {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
   templateUrl: './crud-movies.component.html',
   styleUrls: ['./crud-movies.component.scss']
 })
-export class CrudMoviesComponent {
+export class CrudMoviesComponent implements OnInit  {
   date3!: Date;
   movie!: FormGroup;
   title = new FormControl('');
@@ -24,6 +24,8 @@ export class CrudMoviesComponent {
     });
   }
 
+  ngOnInit(): void {
+  }
 
   saveMovies() {
     console.log(this.movie.value);

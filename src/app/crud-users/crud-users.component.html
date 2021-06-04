@@ -1,0 +1,24 @@
+<h3> Création utilisateur: </h3>
+
+<form id="form" [formGroup]="user">
+    <div class="p-fluid">
+        <div class="p-field">
+            <label for="firstName"> Prénom </label>
+            <input id="firstName" type="text" formControlName="firstName" pInputText>
+        </div>
+        <div class="p-field">
+            <label for="year"> Age </label>
+            <input id="year" type="text" formControlName="year" pInputText>
+        </div>
+        <div class="p-field">
+            <label for="movie"> Film </label>
+            <input id="movie" type="text" formControlName="movie" pInputText>
+        </div>
+        <div class="p-field">
+            <label for="seat"> Siège </label>
+            <input id="seat" type="text" formControlName="seat" pInputText>
+        </div>
+    </div>
+    <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-user"
+        (click)="saveUser();" [disabled]="!user.valid"></button>
+</form>
