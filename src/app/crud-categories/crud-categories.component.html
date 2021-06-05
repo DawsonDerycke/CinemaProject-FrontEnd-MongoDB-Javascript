@@ -4,25 +4,25 @@
     <div class="p-fluid">
         <div class="p-field p-grid">
             <label for="title"> Film </label>
-                <input id="title" type="text" formControlName="title" pInputText>
+            <input id="title" type="text" formControlName="title" pInputText>
         </div>
         <div class="p-field p-grid">
             <label for="category"> Catégorie </label>
-                <input id="category" type="text" FormControlName="category" pInputText>
+            <input id="category" type="text" formControlName="category" pInputText>
         </div>
         <div class="p-field p-grid">
             <label for="duration"> Durée du film </label>
-                <input id="duration" type="text" FormControlName="duration" pInputText>
+            <input id="duration" type="text" formControlName="duration" pInputText>
         </div>
         <div class="p-field p-grid">
             <label for="director"> Réalisateur </label>
-                <input id="director" type="text" FormControlName="director" pInputText>
+            <input id="director" type="text" formControlName="director" pInputText>
         </div>
         <div class="p-field p-grid">
             <label for="actor"> Acteur </label>
-                <input id="actor" type="text" FormControlName="actor" pInputText>
+            <input id="actor" type="text" formControlName="actor" pInputText>
         </div>
     </div>
     <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-book"
-        (click)="saveCat();"></button>
+        (click)="saveCat();" [disabled]="!cat.valid"></button>
 </form>

@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesService {
-  url = "http://localhost:3000";
+export class CategoriesService {
+  url = 'http://localhost:3000';
 
   constructor(public httpClient: HttpClient) { }
 
-  saveMovieMongoDb(data: any) {
+  saveCatMongoDb(data: any) {
     console.log(data);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { MoviesService } from '../movies.service';
 
 @Component({
   selector: 'app-crud-movies',
@@ -14,7 +15,7 @@ export class CrudMoviesComponent implements OnInit  {
   yearRequired = new FormControl('');
   releaseDate = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private moviesService: MoviesService) {
 
     this.movie = this.formBuilder.group({
       title: ["", Validators.required],
@@ -27,7 +28,9 @@ export class CrudMoviesComponent implements OnInit  {
   ngOnInit(): void {
   }
 
-  saveMovies() {
-    console.log(this.movie.value);
+  saveMovie() {
+    let data = this.movie.value;
+    // console.log(this.movie.value);
+    this.moviesService.saveMovieMongoDb(data);
   }
 }

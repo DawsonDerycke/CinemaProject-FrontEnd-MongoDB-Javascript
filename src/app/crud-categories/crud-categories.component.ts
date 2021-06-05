@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { CategoriesService } from '../categories.service';
 
 @Component({
   selector: 'app-crud-categories',
@@ -14,7 +15,7 @@ export class CrudCategoriesComponent implements OnInit {
   director = new FormControl('');
   actor = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private categoriesService: CategoriesService) {
 
     this.cat = this.formBuilder.group({
       title: ["", Validators.required],
@@ -29,6 +30,8 @@ export class CrudCategoriesComponent implements OnInit {
   }
 
   saveCat() {
-    console.log(this.cat.value);
+    let data = this.cat.value;
+    //console.log(this.cat.value);
+    this.categoriesService.saveCatMongoDb(data);
   }
 }

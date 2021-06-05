@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { CustomersService } from '../customers.service';
 
 @Component({
   selector: 'app-crud-users',
@@ -13,7 +14,7 @@ export class CrudUsersComponent implements OnInit {
   movie = new FormControl('');
   seat = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private customersService: CustomersService) {
 
     this.user = this.formBuilder.group({
       firstName: ["", Validators.required],
@@ -27,7 +28,9 @@ export class CrudUsersComponent implements OnInit {
   }
 
   saveUser() {
+    let data = this.user.value;
     console.log(this.user.value);
+    this.customersService.saveUserMongoDb(data);
   }
 
 }
