@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-//import { throwError } from 'rxjs';
-//import { retry, catchError } from 'rxjs/operators';
-import { Customers } from './models/customers';
-import users from '../assets/fake.json/customers.json';
+import { throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import users from '../../assets/fake.json/customers.json';
 
 @Injectable({
   providedIn: 'root'

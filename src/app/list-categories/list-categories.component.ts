@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from '../services/categories.service';
 
 @Component({
   selector: 'app-list-categories',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-categories.component.scss']
 })
 export class ListCategoriesComponent implements OnInit {
+  categories: any;
+  cols: any;
 
-  constructor() { }
-
+  constructor(private categoriesService: CategoriesService) { }
+  
   ngOnInit(): void {
+    this.cols = [
+      { field: 'title', header: 'Film' },
+      { field: 'category', header: 'Catégorie' },
+      { field: 'director', header: 'Réalisateur' },
+      { field: 'actor', header: 'Acteur' }
+  ];
+
+  this.categories = this.categoriesService.category;
   }
 
 }

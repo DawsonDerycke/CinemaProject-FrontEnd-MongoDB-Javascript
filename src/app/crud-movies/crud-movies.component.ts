@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { MoviesService } from '../movies.service';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-crud-movies',

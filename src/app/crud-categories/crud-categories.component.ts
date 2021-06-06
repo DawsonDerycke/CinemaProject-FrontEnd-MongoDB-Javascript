@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CategoriesService } from '../categories.service';
+import { CategoriesService } from '../services/categories.service';
 
 @Component({
   selector: 'app-crud-categories',

@@ -1,172 +1,170 @@
-{
-    "categories": [
-        {
-            "id": 1,
-            "title": "Dawson",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 2,
-            "title": "John",
-            "category": "Action",
-            "duration": 160,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 3,
-            "title": "AAAA",
-            "category": "Aventure",
-            "duration": 180,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 4,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 5,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 6,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 7,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 8,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 9,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 10,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 11,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 12,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 13,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 14,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 15,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 16,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 17,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 18,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 19,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 20,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        },
-        {
-            "id": 21,
-            "title": "AAAA",
-            "category": "Animation",
-            "duration": 120,
-            "director": "Réalisateur",
-            "actor": "Acteur"
-        }
-    ]
-}
+[
+    {
+        "id": 1,
+        "title": "Dawson",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 2,
+        "title": "John",
+        "category": "Action",
+        "duration": 160,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 3,
+        "title": "AAAA",
+        "category": "Aventure",
+        "duration": 180,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 4,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 5,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 6,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 7,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 8,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 9,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 10,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 11,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 12,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 13,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 14,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 15,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 16,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 17,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 18,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 19,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 20,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    },
+    {
+        "id": 21,
+        "title": "AAAA",
+        "category": "Animation",
+        "duration": 120,
+        "director": "Réalisateur",
+        "actor": "Acteur"
+    }
+]
