@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Table } from 'primeng/table';
 import { MoviesService } from '../services/movies.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { MoviesService } from '../services/movies.service';
   styleUrls: ['./list-movies.component.scss']
 })
 export class ListMoviesComponent implements OnInit {
+  @ViewChild('dt') dt!: Table;
   movies: any;
   cols: any;
 
@@ -23,6 +25,8 @@ export class ListMoviesComponent implements OnInit {
     this.movies = this.moviesService.movie;
   }
 
-
+  applyFilterGlobal($event: any, stringVal: any) {
+    this.dt!.filterGlobal(($event.target as HTMLInputElement).value, 'contains');
+  }
 
 }

@@ -1,9 +1,19 @@
-<p-table [columns]="cols" [value]="movies" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+<p-table #dt [columns]="cols" [value]="movies" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+    styleClass="p-datatable-customers p-datatable-gridlines">
+
+    <ng-template pTemplate="caption">
+        <span class="p-input-icon-left p-ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search">
+        </span>
+    </ng-template>
+
     <ng-template pTemplate="header" let-columns>
         <tr>
-            <th *ngFor="let col of columns">
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                 {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
         </tr>
     </ng-template>

@@ -12,8 +12,8 @@
         "title": "John",
         "category": "Action",
         "duration": 160,
-        "director": "Réalisateur",
-        "actor": "Acteur"
+        "director": "Réalisateur2",
+        "actor": "Acteur2"
     },
     {
         "id": 3,
@@ -33,19 +33,19 @@
     },
     {
         "id": 5,
-        "title": "AAAA",
-        "category": "Animation",
-        "duration": 120,
-        "director": "Réalisateur",
-        "actor": "Acteur"
+        "title": "jjjj",
+        "category": "Science Fiction",
+        "duration": 90,
+        "director": "AAAA",
+        "actor": "cbde"
     },
     {
         "id": 6,
         "title": "AAAA",
         "category": "Animation",
         "duration": 120,
-        "director": "Réalisateur",
-        "actor": "Acteur"
+        "director": "zzzz",
+        "actor": "zzzz"
     },
     {
         "id": 7,

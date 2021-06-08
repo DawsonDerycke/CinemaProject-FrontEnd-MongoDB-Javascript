@@ -2,7 +2,7 @@
     {
         "id": 1,
         "firstName": "Dawson",
-        "year": "21",
+        "year": 21,
         "movie": "nom film",
         "seat": "B12",
         "ticket": true
@@ -10,23 +10,23 @@
     {
         "id": 2,
         "firstName": "John",
-        "year": "25",
+        "year": 25,
         "movie": "Film",
         "seat": "A2",
         "ticket": true
     },
     {
         "id": 3,
-        "firstName": "AAAA",
-        "year": "5",
-        "movie": "movie",
-        "seat": "C1",
+        "firstName": "Abcd",
+        "year": 2,
+        "movie": "zzz",
+        "seat": "D2",
         "ticket": false
     },
     {
         "id": 4,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -34,7 +34,7 @@
     {
         "id": 5,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 0,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -42,7 +42,7 @@
     {
         "id": 6,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 8,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -50,7 +50,7 @@
     {
         "id": 7,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 2,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -58,7 +58,7 @@
     {
         "id": 8,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -66,7 +66,7 @@
     {
         "id": 9,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 40,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -74,7 +74,7 @@
     {
         "id": 10,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -82,7 +82,7 @@
     {
         "id": 11,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -90,7 +90,7 @@
     {
         "id": 12,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -98,7 +98,7 @@
     {
         "id": 13,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -106,7 +106,7 @@
     {
         "id": 14,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -114,7 +114,7 @@
     {
         "id": 15,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -122,7 +122,7 @@
     {
         "id": 16,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -130,7 +130,7 @@
     {
         "id": 17,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -138,7 +138,7 @@
     {
         "id": 18,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -146,7 +146,7 @@
     {
         "id": 19,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -154,7 +154,7 @@
     {
         "id": 20,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false
@@ -162,7 +162,7 @@
     {
         "id": 21,
         "firstName": "AAAA",
-        "year": "5",
+        "year": 5,
         "movie": "movie",
         "seat": "C1",
         "ticket": false

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Table } from 'primeng/table';
 import { CategoriesService } from '../services/categories.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { CategoriesService } from '../services/categories.service';
   styleUrls: ['./list-categories.component.scss']
 })
 export class ListCategoriesComponent implements OnInit {
+  @ViewChild('dt') dt!: Table;
   categories: any;
   cols: any;
 
@@ -21,6 +23,10 @@ export class ListCategoriesComponent implements OnInit {
   ];
 
   this.categories = this.categoriesService.category;
+  }
+  
+  applyFilterGlobal($event: any, stringVal: any) {
+    this.dt!.filterGlobal(($event.target as HTMLInputElement).value, 'contains');
   }
 
 }
