@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customers } from '../models/customers';
@@ -19,7 +19,8 @@ export class ApiCustomersService {
 
   addCustomers(dataCustomers: any){
     console.log(dataCustomers);
-    return this.httpClient.post(apiCustomers + `/api/customers`, dataCustomers);
+    const config = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
+    return this.httpClient.post(`http://localhost:3000/api/customers`, dataCustomers, config);
   }
 
 }
