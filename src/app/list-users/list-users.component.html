@@ -1,3 +1,5 @@
+<p-messages [(value)]="msgs1" [enableService]="false"></p-messages>
+
 <p-table #dt [columns]="cols" [value]="users" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
     styleClass="p-datatable-customers p-datatable-gridlines">
@@ -19,8 +21,13 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
+            <td *ngFor="let col of columns"> 
+                <span *ngIf="col.field !== 'year'">
+                    {{rowData[col.field] | titlecase}}
+                </span>
+                <span *ngIf="col.field === 'year'">
+                    {{rowData[col.field]}}
+                </span>
             </td>
         </tr>
     </ng-template>

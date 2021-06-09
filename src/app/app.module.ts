@@ -1,12 +1,12 @@
 // Angular
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
-// Service
-//import { CustomersService } from './customers.service';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 // Primeng
 import { MenuModule } from 'primeng/menu';
@@ -14,11 +14,14 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ToastModule } from 'primeng/toast';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CalendarModule } from 'primeng/calendar'; 
+import { CalendarModule } from 'primeng/calendar';
 import { TableModule } from 'primeng/table';
 
 // Component
@@ -35,7 +38,7 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
 import { SearchCategoriesComponent } from './search-categories/search-categories.component';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     AppComponent,
     ListMoviesComponent,
     SearchMoviesComponent,
@@ -58,7 +61,10 @@ import { SearchCategoriesComponent } from './search-categories/search-categories
     InputTextModule,
     ButtonModule,
     CheckboxModule,
+    ToastModule,
     RadioButtonModule,
+    MessagesModule,
+    MessageModule,
     DropdownModule,
     InputTextareaModule,
     CalendarModule,
@@ -66,7 +72,7 @@ import { SearchCategoriesComponent } from './search-categories/search-categories
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

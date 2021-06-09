@@ -4,4 +4,5 @@ export interface Customers {
     year: number;
     movie: string;
     seat: string;
+    ticket: boolean;
 }
