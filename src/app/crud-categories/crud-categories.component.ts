@@ -20,7 +20,7 @@ export class CrudCategoriesComponent implements OnInit {
     this.cat = this.formBuilder.group({
       title: ["", Validators.required],
       category: ["", Validators.required],
-      duration: ["", Validators.required],
+      duration: ["", [Validators.required, Validators.min(5), Validators.max(600)]],
       director: ["", Validators.required],
       actor: ["", Validators.required],
     });

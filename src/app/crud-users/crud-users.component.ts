@@ -18,17 +18,21 @@ export class CrudUsersComponent implements OnInit {
   movie = new FormControl('');
   seat = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder, private customersService: CustomersService, private apiCustomersService: ApiCustomersService
-    ,private messageService: MessageService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private customersService: CustomersService,
+    private apiCustomersService: ApiCustomersService,
+    private messageService: MessageService
+  ) {
 
     this.user = this.formBuilder.group({
       firstName: ["", Validators.required],
-      year: ["", Validators.required],
+      year: ["", [Validators.required, Validators.min(1), Validators.max(120)]],
       movie: ["", Validators.required],
-      seat: ["", Validators.required],
+      seat: ["", [Validators.required, Validators.maxLength(4)]],
       ticket: [false, Validators.required],
     });
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -37,15 +41,15 @@ export class CrudUsersComponent implements OnInit {
     let dataCustomers = this.user.value;
     console.log(this.user.value);
     //this.customersService.saveUserMongoDb(data);
-    
+
     this.apiCustomersService.addCustomers(dataCustomers).subscribe(res => {
       console.log(res)
-      this.messageService.add({ severity: 'success', summary:' Message', detail:'Ajout réussi' });
+      this.messageService.add({ severity: 'success', summary: ' Message', detail: 'Ajout réussi' });
     },
-    error => {
-      console.log(error);
-      this.messageService.add({ severity: 'error', summary:' Message', detail:'Une erreur est survenue' });
-    });
+      error => {
+        console.log(error);
+        this.messageService.add({ severity: 'error', summary: ' Message', detail: 'Une erreur est survenue' });
+      });
 
 
   }

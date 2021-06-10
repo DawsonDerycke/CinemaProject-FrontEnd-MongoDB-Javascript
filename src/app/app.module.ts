@@ -9,19 +9,20 @@ import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
 
 // Primeng
-import { MenuModule } from 'primeng/menu';
-import { MegaMenuModule } from 'primeng/megamenu';
 import { AccordionModule } from 'primeng/accordion';
-import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { MenuModule } from 'primeng/menu';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ToastModule } from 'primeng/toast';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CalendarModule } from 'primeng/calendar';
+import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 
 // Component
@@ -62,6 +63,7 @@ import { SearchCategoriesComponent } from './search-categories/search-categories
     ButtonModule,
     CheckboxModule,
     ToastModule,
+    InputNumberModule,
     RadioButtonModule,
     MessagesModule,
     MessageModule,

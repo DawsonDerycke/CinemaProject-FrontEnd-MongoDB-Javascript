@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MoviesService } from '../services/movies.service';
 
@@ -7,20 +7,22 @@ import { MoviesService } from '../services/movies.service';
   templateUrl: './crud-movies.component.html',
   styleUrls: ['./crud-movies.component.scss']
 })
-export class CrudMoviesComponent implements OnInit  {
-  date3!: Date;
+export class CrudMoviesComponent implements OnInit {
   movie!: FormGroup;
   title = new FormControl('');
   price = new FormControl('');
   yearRequired = new FormControl('');
   releaseDate = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder, private moviesService: MoviesService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private moviesService: MoviesService
+  ) {
 
     this.movie = this.formBuilder.group({
       title: ["", Validators.required],
-      price: ["", Validators.required],
-      yearRequired: ["", Validators.required],
+      price: ["", [Validators.required, Validators.min(0), Validators.max(20)]],
+      yearRequired: ["", [Validators.required, Validators.min(0), Validators.max(20)]],
       releaseDate: ["", Validators.required],
     });
   }

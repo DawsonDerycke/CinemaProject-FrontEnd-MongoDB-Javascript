@@ -10,7 +10,9 @@
         </div>
         <div class="p-field">
             <label for="year"> Age </label>
-            <input id="year" type="text" formControlName="year" pInputText>
+            <p-inputNumber [min]="1" [max]="120" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"
+            formControlName="year">
+            </p-inputNumber>
         </div>
         <div class="p-field">
             <label for="movie"> Film </label>
@@ -18,7 +20,7 @@
         </div>
         <div class="p-field">
             <label for="seat"> Siège </label>
-            <input id="seat" type="text" formControlName="seat" pInputText>
+            <input id="seat" type="text" maxlength="4" formControlName="seat" pInputText>
         </div>
     </div>
     <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-user"
