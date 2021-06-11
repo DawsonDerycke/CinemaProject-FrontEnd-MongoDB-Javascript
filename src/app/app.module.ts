@@ -13,6 +13,8 @@ import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
@@ -54,6 +56,8 @@ import { SearchCategoriesComponent } from './search-categories/search-categories
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    DialogModule,
+    ConfirmDialogModule,
     FormsModule,
     ReactiveFormsModule,
     MenuModule,
