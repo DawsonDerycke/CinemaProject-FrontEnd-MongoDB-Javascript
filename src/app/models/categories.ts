@@ -1,5 +1,5 @@
 export interface Categories {
-    id: number;
+    _id: string;
     title: string;
     category: string;
     duration: number;

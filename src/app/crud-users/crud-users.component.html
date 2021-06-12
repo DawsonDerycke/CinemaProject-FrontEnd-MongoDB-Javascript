@@ -6,7 +6,7 @@
     <div class="p-fluid">
         <div class="p-field">
             <label for="firstName"> Prénom </label>
-            <input id="firstName" type="text" formControlName="firstName" pInputText>
+            <input id="firstName" minlength="2" maxlength="25" type="text" formControlName="firstName" pInputText>
         </div>
         <div class="p-field">
             <label for="year"> Age </label>
@@ -16,7 +16,7 @@
         </div>
         <div class="p-field">
             <label for="movie"> Film </label>
-            <input id="movie" type="text" formControlName="movie" pInputText>
+            <input id="movie" maxlength="80" type="text" formControlName="movie" pInputText>
         </div>
         <div class="p-field">
             <label for="seat"> Siège </label>

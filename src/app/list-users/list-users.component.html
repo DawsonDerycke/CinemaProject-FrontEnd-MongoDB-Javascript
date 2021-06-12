@@ -40,19 +40,19 @@
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="firstName">Prénom</label>
-            <input type="text" pInputText id="firstName" [(ngModel)]="user.firstName" required autofocus />
+            <input type="text" minlength="2" maxlength="25" pInputText id="firstName" [(ngModel)]="user.firstName" required autofocus />
         </div>
         <div class="p-field">
             <label for="year">Age</label>
-            <input type="text" pInputText id="year" [(ngModel)]="user.year" required autofocus />
+            <input type="number" [min]="1" [max]="120" pInputText id="year" [(ngModel)]="user.year" required autofocus />
         </div>
         <div class="p-field">
             <label for="movie">Film</label>
-            <input type="text" pInputText id="movie" [(ngModel)]="user.movie" required autofocus />
+            <input type="text" maxlength="80" pInputText id="movie" [(ngModel)]="user.movie" required autofocus />
         </div>
         <div class="p-field">
             <label for="seat">Siège</label>
-            <input type="text" pInputText id="seat" [(ngModel)]="user.seat" required autofocus />
+            <input type="text" maxlength="4" pInputText id="seat" [(ngModel)]="user.seat" required autofocus />
         </div>
     </ng-template>
     

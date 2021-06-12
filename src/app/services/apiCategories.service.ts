@@ -17,4 +17,16 @@ export class ApiCategoriesService {
     return this.httpClient.get<Categories[]>(apiCategories + `/api/categories`);
   } 
 
+  addCategories(dataCategories: any) {
+    return this.httpClient.post(apiCategories + `/api/categories`, dataCategories);
+  }
+
+  updateOneCategory(id: any, dataCategory: any) {
+    return this.httpClient.post(apiCategories + `/api/categories/${id}`, dataCategory);
+  }
+
+  deleteOneCategory(idToDelete: any) {
+    return this.httpClient.delete(apiCategories + `/api/categories/${idToDelete}`);
+  }
+
 }

@@ -17,6 +17,7 @@
                 {{col.header}}
                 <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
+            <th> Action </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -32,6 +33,40 @@
                     {{rowData[col.field]}}
                 </span>
             </td>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                (click)="editMovie(rowData)"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                (click)="deleteMovie(rowData)"></button>
         </tr>
     </ng-template>
 </p-table>
+
+<p-dialog [(visible)]="movieDialog" [style]="{width: '450px'}" header="Movies Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="title">Film</label>
+            <input type="text" maxlength="80" pInputText id="title" [(ngModel)]="modelMovie.title" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="price">Prix</label>
+            <input type="number" [min]="1" [max]="15" pInputText id="price" [(ngModel)]="modelMovie.price" required autofocus>
+        </div>
+        <div class="p-field">
+            <label for="yearRequired">Age requis</label>
+            <input type="number" [min]="0" [max]="18" pInputText id="yearRequired" [(ngModel)]="modelMovie.yearRequired"
+                required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="releaseDate">Date de sortie</label>
+            <input type="date" pInputText id="releaseDate" [(ngModel)]="modelMovie.releaseDate" required autofocus />
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUpdate()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

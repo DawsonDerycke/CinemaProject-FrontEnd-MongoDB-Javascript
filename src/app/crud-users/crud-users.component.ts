@@ -26,9 +26,9 @@ export class CrudUsersComponent implements OnInit {
   ) {
 
     this.user = this.formBuilder.group({
-      firstName: ["", Validators.required],
+      firstName: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       year: ["", [Validators.required, Validators.min(1), Validators.max(120)]],
-      movie: ["", Validators.required],
+      movie: ["", [Validators.required, Validators.maxLength(80)]],
       seat: ["", [Validators.required, Validators.maxLength(4)]],
       ticket: [false, Validators.required],
     });
@@ -39,8 +39,6 @@ export class CrudUsersComponent implements OnInit {
 
   saveUser() {
     let dataCustomers = this.user.value;
-    console.log(this.user.value);
-    //this.customersService.saveUserMongoDb(data);
 
     this.apiCustomersService.addCustomers(dataCustomers).subscribe(res => {
       console.log(res)
@@ -50,8 +48,6 @@ export class CrudUsersComponent implements OnInit {
         console.log(error);
         this.messageService.add({ severity: 'error', summary: ' Message', detail: 'Une erreur est survenue' });
       });
-
-
   }
 
 }

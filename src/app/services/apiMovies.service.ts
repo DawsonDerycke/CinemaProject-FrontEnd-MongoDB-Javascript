@@ -15,4 +15,16 @@ export class ApiMoviesService {
   getMovies(): Observable<Movies[]> {
     return this.httpClient.get<Movies[]>(apiMovies + `/api/movies`);
   } 
+
+  addMovies(dataMovies: any) {
+    return this.httpClient.post(apiMovies + `/api/movies`, dataMovies);
+  } 
+
+  updateOneMovie(id: any, dataMovies: any) {
+    return this.httpClient.post(apiMovies + `/api/movies/${id}`, dataMovies);
+  }
+
+  deleteOneMovie(idToDelete: any) {
+    return this.httpClient.delete(apiMovies + `/api/movies/${idToDelete}`);
+  }
 }
