@@ -4,7 +4,8 @@ import { CustomersService } from '../services/customers.service';
 import { ApiCustomersService } from '../services/apiCustomers.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
-
+//panel
+//rating 
 @Component({
   selector: 'app-crud-users',
   templateUrl: './crud-users.component.html',
@@ -42,11 +43,13 @@ export class CrudUsersComponent implements OnInit {
 
     this.apiCustomersService.addCustomers(dataCustomers).subscribe(res => {
       console.log(res)
-      this.messageService.add({ severity: 'success', summary: ' Message', detail: 'Ajout réussi' });
+      this.messageService.add({ severity: 'success', summary: 'Création client:', detail: 'Ajout réussi' });
+
+      this.user.reset();
     },
       error => {
         console.log(error);
-        this.messageService.add({ severity: 'error', summary: ' Message', detail: 'Une erreur est survenue' });
+        this.messageService.add({ severity: 'error', summary: 'Création client:', detail: 'Une erreur est survenue' });
       });
   }
 

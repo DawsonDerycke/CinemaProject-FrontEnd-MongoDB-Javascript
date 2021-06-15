@@ -80,7 +80,7 @@ export class ListCategoriesComponent implements OnInit {
       console.log(id);
   
       this.confirmationService.confirm({
-        message: 'Voulez-vous mettre à jour cette information ' + category.title + '?',
+        message: 'Voulez-vous mettre à jour cette information: \"' + category.title + '\" ?',
         header: 'Confirmer',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {

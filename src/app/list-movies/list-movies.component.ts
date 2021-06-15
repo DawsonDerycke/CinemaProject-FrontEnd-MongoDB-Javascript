@@ -80,7 +80,7 @@ export class ListMoviesComponent implements OnInit {
       console.log(id);
   
       this.confirmationService.confirm({
-        message: 'Voulez-vous mettre à jour cette information ' + movie.title + '?',
+        message: 'Voulez-vous mettre à jour cette information \"' + movie.title + '\" ?',
         header: 'Confirmer',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {

@@ -32,10 +32,9 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getApi();
+    
     this.apiService.getCustomers().subscribe(data => {
       this.users = data;
-      console.log(this.users);
     });
 
     // Colonne label property
@@ -66,6 +65,32 @@ export class ListUsersComponent implements OnInit {
       });
   }
 
+  // Supprimer 
+  deleteUser(rowData: any) {
+    console.log(rowData);
+    this.user = rowData;
+    let idToDelete = rowData._id;
+    this.confirmationService.confirm({
+      message: 'Voulez-vous vraiment supprimer ' + this.user.firstName + '?',
+      header: 'Confirmer',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteOneCustomer(idToDelete).subscribe(data => {
+          this.users = data;
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+        
+        },
+          error => {
+            console.log(error);
+            this.msgs1 = [
+              { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer l\'utilisateur !' },
+            ];
+          });
+
+      }
+    });
+  }
+
   // Boite de dialogue
   hideDialog() {
     this.userDialog = false;
@@ -87,7 +112,7 @@ export class ListUsersComponent implements OnInit {
     console.log(user);
 
     this.confirmationService.confirm({
-      message: 'Voulez-vous mettre à jour cette information ' + user.firstName + '?',
+      message: 'Voulez-vous mettre à jour cette information \"' + user.firstName + '\" ?',
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -105,29 +130,5 @@ export class ListUsersComponent implements OnInit {
     });
   }
 
-  // Supprimer 
-  deleteUser(rowData: any) {
-    console.log(rowData);
-    this.user = rowData;
-    let idToDelete = rowData._id;
-    this.confirmationService.confirm({
-      message: 'Voulez-vous vraiment supprimer ' + this.user.firstName + '?',
-      header: 'Confirmer',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.apiService.deleteOneCustomer(idToDelete).subscribe(data => {
-          this.users = data;
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
-        },
-          error => {
-            console.log(error);
-            this.msgs1 = [
-              { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer l\'utilisateur !' },
-            ];
-          });
-
-      }
-    });
-  }
 
 }

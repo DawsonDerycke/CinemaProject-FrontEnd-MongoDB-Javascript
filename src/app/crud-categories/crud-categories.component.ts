@@ -42,11 +42,13 @@ export class CrudCategoriesComponent implements OnInit {
 
     this.apiCategoriesService.addCategories(dataCategories).subscribe(res => {
       console.log(res)
-      this.messageService.add({ severity: 'success', summary: ' Message', detail: 'Ajout réussi' });
+      this.messageService.add({ severity: 'success', summary: 'Création film:', detail: 'Ajout réussi' });
+
+      this.cat.reset();
     },
       error => {
         console.log(error);
-        this.messageService.add({ severity: 'error', summary: ' Message', detail: 'Une erreur est survenue' });
+        this.messageService.add({ severity: 'error', summary: 'Création film:', detail: 'Une erreur est survenue' });
       });
   }
 }

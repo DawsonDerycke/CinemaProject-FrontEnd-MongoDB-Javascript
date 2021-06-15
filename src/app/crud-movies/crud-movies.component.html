@@ -14,14 +14,13 @@
         </div>
         <div class="p-field">
             <label for="yearRequired">Age requis</label>
-            <p-inputNumber mode="decimal" [min]="0" [max]="18" inputId="withoutgrouping" [useGrouping]="false"
-                formControlName="yearRequired">
-            </p-inputNumber>
+                <p-dropdown id="yearRequired" [options]="year" [(ngModel)]="selectedYear" optionLabel="name"
+                formControlName="yearRequired"></p-dropdown>
         </div>
         <div class="p-field p-col-12 p-md-4">
             <label for="releaseDate">Date de sortie</label>
             <p-calendar id="releaseDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators"
-                formControlName="releaseDate"></p-calendar>
+                dateFormat="yy-mm-dd" dateType="date" formControlName="releaseDate"></p-calendar>
         </div>
     </div>
     <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-check"

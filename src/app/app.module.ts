@@ -24,6 +24,7 @@ import { MenuModule } from 'primeng/menu';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { RatingModule } from 'primeng/rating';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 
@@ -58,6 +59,7 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
     AccordionModule,
     MegaMenuModule,
     InputTextModule,
+    RatingModule,
     ButtonModule,
     CheckboxModule,
     ToastModule,
