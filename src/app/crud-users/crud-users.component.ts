@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CustomersService } from '../services/customers.service';
 import { ApiCustomersService } from '../services/apiCustomers.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
-//panel
-//rating 
 @Component({
   selector: 'app-crud-users',
   templateUrl: './crud-users.component.html',
@@ -21,7 +18,6 @@ export class CrudUsersComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private customersService: CustomersService,
     private apiCustomersService: ApiCustomersService,
     private messageService: MessageService
   ) {
@@ -46,11 +42,11 @@ export class CrudUsersComponent implements OnInit {
       this.messageService.add({ severity: 'success', summary: 'Création client:', detail: 'Ajout réussi' });
 
       this.user.reset();
-    },
-      error => {
-        console.log(error);
-        this.messageService.add({ severity: 'error', summary: 'Création client:', detail: 'Une erreur est survenue' });
-      });
+
+    }, error => {
+      console.log(error);
+      this.messageService.add({ severity: 'error', summary: 'Création client:', detail: 'Une erreur est survenue' });
+    });
   }
 
 }

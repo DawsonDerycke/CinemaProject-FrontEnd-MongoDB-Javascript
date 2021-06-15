@@ -1,28 +1,30 @@
 <p-toast position="top-left"></p-toast>
 
-<h3> Création film: </h3>
-
-<form id="form" [formGroup]="movie">
-    <div class="p-fluid">
-        <div class="p-field">
-            <label for="title">Titre</label>
-            <input id="title" maxlength="80" type="text" formControlName="title" pInputText>
-        </div>
-        <div class="p-field">
-            <label for="price">Prix</label>
-            <p-inputNumber mode="currency" [min]="1" [max]="15" currency="EUR" formControlName="price"></p-inputNumber>
-        </div>
-        <div class="p-field">
-            <label for="yearRequired">Age requis</label>
+<p-panel header="Création film:" [toggleable]="true">
+    <form id="form" [formGroup]="movie">
+        <div class="p-fluid">
+            <div class="p-field">
+                <label for="title">Titre</label>
+                <input id="title" maxlength="80" type="text" formControlName="title" pInputText>
+            </div>
+            <div class="p-field">
+                <label for="price">Prix</label>
+                <p-inputNumber mode="currency" [min]="1" [max]="15" currency="EUR" formControlName="price">
+                </p-inputNumber>
+            </div>
+            <div class="p-field">
+                <label for="yearRequired">Age requis</label>
                 <p-dropdown id="yearRequired" [options]="year" [(ngModel)]="selectedYear" optionLabel="name"
-                formControlName="yearRequired"></p-dropdown>
+                    formControlName="yearRequired"></p-dropdown>
+            </div>
+            <div class="p-field">
+                <label for="releaseDate">Date de sortie</label>
+                <p-calendar id="releaseDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                    inputId="navigators" dateFormat="yy-mm-dd" dateType="date" formControlName="releaseDate">
+                </p-calendar>
+            </div>
         </div>
-        <div class="p-field p-col-12 p-md-4">
-            <label for="releaseDate">Date de sortie</label>
-            <p-calendar id="releaseDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators"
-                dateFormat="yy-mm-dd" dateType="date" formControlName="releaseDate"></p-calendar>
-        </div>
-    </div>
-    <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-check"
-        (click)="saveMovie();" [disabled]="!movie.valid"></button>
-</form>
+        <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-check"
+            (click)="saveMovie();" [disabled]="!movie.valid"></button>
+    </form>
+</p-panel>

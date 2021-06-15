@@ -25,6 +25,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
+import { PanelModule } from 'primeng/panel';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 
@@ -37,6 +38,8 @@ import { CrudUsersComponent } from './crud-users/crud-users.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { CrudCategoriesComponent } from './crud-categories/crud-categories.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
+import { CrudRatingsComponent } from './crud-ratings/crud-ratings.component';
+import { ListRatingsComponent } from './list-ratings/list-ratings.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
     ListUsersComponent,
     CrudCategoriesComponent,
     ListCategoriesComponent,
+    CrudRatingsComponent,
+    ListRatingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,10 +61,12 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
     FormsModule,
     ReactiveFormsModule,
     MenuModule,
+    PanelModule,
     AccordionModule,
     MegaMenuModule,
     InputTextModule,
     RatingModule,
+    
     ButtonModule,
     CheckboxModule,
     ToastModule,

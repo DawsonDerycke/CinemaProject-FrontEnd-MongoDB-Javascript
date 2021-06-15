@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
-import { CustomersService } from '../services/customers.service';
 import { ApiCustomersService } from '../services/apiCustomers.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Users } from '../models/users';
@@ -24,7 +23,6 @@ export class ListUsersComponent implements OnInit {
   submitted!: boolean;
 
   constructor(
-    private customersService: CustomersService,
     private apiService: ApiCustomersService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -32,7 +30,7 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+
     this.apiService.getCustomers().subscribe(data => {
       this.users = data;
     });
@@ -56,20 +54,20 @@ export class ListUsersComponent implements OnInit {
     this.apiService.getCustomers().subscribe(data => {
       this.users = data;
       console.log(this.users);
-    },
-      error => {
-        this.msgs1 = [
-          { severity: 'error', summary: 'Erreur', detail: 'Impossible d\'accéder à la BDD !' },
-        ];
-        console.log(error);
-      });
+
+    }, error => {
+      this.msgs1 = [
+        { severity: 'error', summary: 'Erreur', detail: 'Impossible d\'accéder à la BDD !' },
+      ];
+      console.log(error);
+    });
   }
 
   // Supprimer 
   deleteUser(rowData: any) {
-    console.log(rowData);
     this.user = rowData;
     let idToDelete = rowData._id;
+
     this.confirmationService.confirm({
       message: 'Voulez-vous vraiment supprimer ' + this.user.firstName + '?',
       header: 'Confirmer',
@@ -78,15 +76,13 @@ export class ListUsersComponent implements OnInit {
         this.apiService.deleteOneCustomer(idToDelete).subscribe(data => {
           this.users = data;
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
-        
-        },
-          error => {
-            console.log(error);
-            this.msgs1 = [
-              { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer l\'utilisateur !' },
-            ];
-          });
 
+        }, error => {
+          console.log(error);
+          this.msgs1 = [
+            { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer l\'utilisateur !' },
+          ];
+        });
       }
     });
   }
@@ -119,16 +115,15 @@ export class ListUsersComponent implements OnInit {
         this.apiService.updateCustomers(user, id).subscribe(data => {
           this.users = data;
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
-        },
-          error => {
-            this.msgs1 = [
-              { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
-            ];
-            console.log(error);
-          });
+
+        }, error => {
+          this.msgs1 = [
+            { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
+          ];
+          console.log(error);
+        });
       }
     });
   }
-
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
-import { MoviesService } from '../services/movies.service';
 import { ApiMoviesService } from '../services/apiMovies.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Movies } from '../models/movies';
@@ -23,7 +22,6 @@ export class ListMoviesComponent implements OnInit {
   msgs1!: Message[];
 
   constructor(
-    private moviesService: MoviesService,
     private apiService: ApiMoviesService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -52,13 +50,13 @@ export class ListMoviesComponent implements OnInit {
     this.apiService.getMovies().subscribe(data => {
       this.movies = data;
       console.log(this.movies);
-    },
-      error => {
-        this.msgs1 = [
-          { severity: 'error', summary: 'Erreur', detail: 'Impossible d\'accéder à la BDD !' },
-        ];
-        console.log(error);
-      });
+
+    }, error => {
+      this.msgs1 = [
+        { severity: 'error', summary: 'Erreur', detail: 'Impossible d\'accéder à la BDD !' },
+      ];
+      console.log(error);
+    });
   }
 
   // Boite de dialogue
@@ -75,30 +73,30 @@ export class ListMoviesComponent implements OnInit {
 
   // Sauve modif
   saveUpdate() {
-      let id = this.modelMovie._id;
-      let movie = this.modelMovie;
-      console.log(id);
-  
-      this.confirmationService.confirm({
-        message: 'Voulez-vous mettre à jour cette information \"' + movie.title + '\" ?',
-        header: 'Confirmer',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-          console.log(movie);
-          this.apiService.updateOneMovie(id, movie).subscribe(data => {
-            this.movies = data;
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
-          },
-            error => {
-              console.log(error);
-              this.msgs1 = [
-                { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
-              ];
-            });
-        }
-      });
+    let id = this.modelMovie._id;
+    let movie = this.modelMovie;
+    console.log(id);
+
+    this.confirmationService.confirm({
+      message: 'Voulez-vous mettre à jour cette information \"' + movie.title + '\" ?',
+      header: 'Confirmer',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        console.log(movie);
+        this.apiService.updateOneMovie(id, movie).subscribe(data => {
+          this.movies = data;
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+
+        }, error => {
+          console.log(error);
+          this.msgs1 = [
+            { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
+          ];
+        });
+      }
+    });
   }
-  
+
   // Supprimer
   deleteMovie(rowData: any) {
     this.modelMovie = rowData;
@@ -112,14 +110,13 @@ export class ListMoviesComponent implements OnInit {
         this.apiService.deleteOneMovie(idToDelete).subscribe(data => {
           this.movies = data;
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
-        },
-          error => {
-            this.msgs1 = [
-              { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer le film !' },
-            ];
-            console.log(error);
-          });
 
+        }, error => {
+          this.msgs1 = [
+            { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer le film !' },
+          ];
+          console.log(error);
+        });
       }
     });
   }

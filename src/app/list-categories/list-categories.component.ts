@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
-import { CategoriesService } from '../services/categories.service';
 import { ApiCategoriesService } from '../services/apiCategories.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Categories } from '../models/categories';
@@ -22,11 +21,10 @@ export class ListCategoriesComponent implements OnInit {
   msgs1!: Message[];
 
   constructor(
-    private categoriesService: CategoriesService,
     private apiService: ApiCategoriesService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -51,17 +49,17 @@ export class ListCategoriesComponent implements OnInit {
     this.apiService.getCategories().subscribe(data => {
       this.categories = data;
       console.log(this.categories);
-    },
-      error => {
-        this.msgs1 = [
-          { severity: 'error', summary: 'Erreur', detail: 'Impossible d\'accéder à la BDD !' },
-        ];
-        console.log(error);
-      });
+
+    }, error => {
+      this.msgs1 = [
+        { severity: 'error', summary: 'Erreur', detail: 'Impossible d\'accéder à la BDD !' },
+      ];
+      console.log(error);
+    });
   }
 
-   // Boite de dialogue
-   hideDialog() {
+  // Boite de dialogue
+  hideDialog() {
     this.categoryDialog = false;
     this.submitted = false;
   }
@@ -75,30 +73,30 @@ export class ListCategoriesComponent implements OnInit {
 
   // Sauve modif
   saveUpdate() {
-      let id = this.modelCategory._id;
-      let category = this.modelCategory;
-      console.log(id);
-  
-      this.confirmationService.confirm({
-        message: 'Voulez-vous mettre à jour cette information: \"' + category.title + '\" ?',
-        header: 'Confirmer',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-          console.log(category);
-          this.apiService.updateOneCategory(id, category).subscribe(data => {
-            this.categories = data;
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
-          },
-            error => {
-              console.log(error);
-              this.msgs1 = [
-                { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
-              ];
-            });
-        }
-      });
+    let id = this.modelCategory._id;
+    let category = this.modelCategory;
+    console.log(id);
+
+    this.confirmationService.confirm({
+      message: 'Voulez-vous mettre à jour cette information: \"' + category.title + '\" ?',
+      header: 'Confirmer',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        console.log(category);
+        this.apiService.updateOneCategory(id, category).subscribe(data => {
+          this.categories = data;
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+
+        }, error => {
+          console.log(error);
+          this.msgs1 = [
+            { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
+          ];
+        });
+      }
+    });
   }
-  
+
   // Supprimer
   deleteCategory(rowData: any) {
     this.modelCategory = rowData;
@@ -112,15 +110,15 @@ export class ListCategoriesComponent implements OnInit {
         this.apiService.deleteOneCategory(idToDelete).subscribe(data => {
           this.categories = data;
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
-        },
-          error => {
-            this.msgs1 = [
-              { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer le film !' },
-            ];
-            console.log(error);
-          });
 
+        }, error => {
+          this.msgs1 = [
+            { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer le film !' },
+          ];
+          console.log(error);
+        });
       }
     });
   }
+  
 }

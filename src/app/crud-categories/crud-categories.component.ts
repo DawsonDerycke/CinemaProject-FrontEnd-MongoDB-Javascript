@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CategoriesService } from '../services/categories.service';
 import { ApiCategoriesService } from '../services/apiCategories.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
@@ -20,7 +19,6 @@ export class CrudCategoriesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private categoriesService: CategoriesService,
     private apiCategoriesService: ApiCategoriesService,
     private messageService: MessageService,
   ) {
@@ -42,13 +40,12 @@ export class CrudCategoriesComponent implements OnInit {
 
     this.apiCategoriesService.addCategories(dataCategories).subscribe(res => {
       console.log(res)
-      this.messageService.add({ severity: 'success', summary: 'Création film:', detail: 'Ajout réussi' });
+      this.messageService.add({ severity: 'success', summary: 'Création catégorie:', detail: 'Ajout réussi' });
 
       this.cat.reset();
-    },
-      error => {
-        console.log(error);
-        this.messageService.add({ severity: 'error', summary: 'Création film:', detail: 'Une erreur est survenue' });
-      });
+    }, error => {
+      console.log(error);
+      this.messageService.add({ severity: 'error', summary: 'Création catégorie:', detail: 'Une erreur est survenue' });
+    });
   }
 }

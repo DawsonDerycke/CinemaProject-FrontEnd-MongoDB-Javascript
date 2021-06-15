@@ -1,32 +1,32 @@
 <p-toast position="top-left"></p-toast>
 
-<h3> Création catégorie: </h3>
-
-<form id="form" [formGroup]="cat">
-    <div class="p-fluid">
-        <div class="p-field p-grid">
-            <label for="title"> Film </label>
-            <input id="title" maxlength="80" type="text" formControlName="title" pInputText>
+<p-panel header="Création catégorie:" [toggleable]="true">
+    <form id="form" [formGroup]="cat">
+        <div class="p-fluid">
+            <div class="p-field p-grid">
+                <label for="title"> Film </label>
+                <input id="title" maxlength="80" type="text" formControlName="title" pInputText>
+            </div>
+            <div class="p-field p-grid">
+                <label for="category"> Catégorie </label>
+                <input id="category" maxlength="25" type="text" formControlName="category" pInputText>
+            </div>
+            <div class="p-field p-grid">
+                <label for="duration"> Durée du film </label>
+                <p-inputNumber mode="decimal" [min]="5" [max]="600" inputId="withoutgrouping" [useGrouping]="false"
+                    formControlName="duration">
+                </p-inputNumber>
+            </div>
+            <div class="p-field p-grid">
+                <label for="director"> Réalisateur </label>
+                <input id="director" minlength="3" maxlength="25" type="text" formControlName="director" pInputText>
+            </div>
+            <div class="p-field p-grid">
+                <label for="actor"> Acteur </label>
+                <input id="actor" minlength="3" maxlength="25" type="text" formControlName="actor" pInputText>
+            </div>
         </div>
-        <div class="p-field p-grid">
-            <label for="category"> Catégorie </label>
-            <input id="category" maxlength="25" type="text" formControlName="category" pInputText>
-        </div>
-        <div class="p-field p-grid">
-            <label for="duration"> Durée du film </label>
-            <p-inputNumber mode="decimal" [min]="5" [max]="600" inputId="withoutgrouping" [useGrouping]="false"
-            formControlName="duration">
-            </p-inputNumber>
-        </div>
-        <div class="p-field p-grid">
-            <label for="director"> Réalisateur </label>
-            <input id="director" minlength="3" maxlength="25" type="text" formControlName="director" pInputText>
-        </div>
-        <div class="p-field p-grid">
-            <label for="actor"> Acteur </label>
-            <input id="actor" minlength="3" maxlength="25" type="text" formControlName="actor" pInputText>
-        </div>
-    </div>
-    <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-book"
-        (click)="saveCat();" [disabled]="!cat.valid"></button>
-</form>
+        <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-book"
+            (click)="saveCat();" [disabled]="!cat.valid"></button>
+    </form>
+</p-panel>
