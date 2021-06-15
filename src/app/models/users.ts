@@ -1,5 +1,5 @@
 export interface Users {
-    _id: number;
+    _id: string;
     firstName: string;
     year: number;
     movie: string;

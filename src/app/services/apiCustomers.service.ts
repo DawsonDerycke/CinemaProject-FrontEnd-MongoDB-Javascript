@@ -20,8 +20,8 @@ export class ApiCustomersService {
     return this.httpClient.post(apiCustomers + `/api/customers`, dataCustomers);
   }
 
-  updateCustomers(user: any, id: any) {
-    return this.httpClient.post(apiCustomers + `/api/customers/${id}`, user);
+  updateCustomers(dataCustomers: any, id: any) {
+    return this.httpClient.post(apiCustomers + `/api/customers/${id}`, dataCustomers);
   }
 
   deleteOneCustomer(idToDelete: any) {

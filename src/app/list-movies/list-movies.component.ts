@@ -49,7 +49,6 @@ export class ListMoviesComponent implements OnInit {
   getApi() {
     this.apiService.getMovies().subscribe(data => {
       this.movies = data;
-      console.log(this.movies);
 
     }, error => {
       this.msgs1 = [
@@ -75,17 +74,16 @@ export class ListMoviesComponent implements OnInit {
   saveUpdate() {
     let id = this.modelMovie._id;
     let movie = this.modelMovie;
-    console.log(id);
 
     this.confirmationService.confirm({
       message: 'Voulez-vous mettre à jour cette information \"' + movie.title + '\" ?',
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log(movie);
         this.apiService.updateOneMovie(id, movie).subscribe(data => {
-          this.movies = data;
+          console.log(data);
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+          this.movieDialog = false;
 
         }, error => {
           console.log(error);

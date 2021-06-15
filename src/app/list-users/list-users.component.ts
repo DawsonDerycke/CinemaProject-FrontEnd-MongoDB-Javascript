@@ -30,11 +30,6 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    this.apiService.getCustomers().subscribe(data => {
-      this.users = data;
-    });
-
     // Colonne label property
     this.cols = [
       { field: 'firstName', header: 'Prénom' },
@@ -53,7 +48,6 @@ export class ListUsersComponent implements OnInit {
   getApi() {
     this.apiService.getCustomers().subscribe(data => {
       this.users = data;
-      console.log(this.users);
 
     }, error => {
       this.msgs1 = [
@@ -104,17 +98,16 @@ export class ListUsersComponent implements OnInit {
   saveUpdate() {
     let id = this.user._id;
     let user = this.user;
-    console.log(id);
-    console.log(user);
 
     this.confirmationService.confirm({
       message: 'Voulez-vous mettre à jour cette information \"' + user.firstName + '\" ?',
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.updateCustomers(user, id).subscribe(data => {
-          this.users = data;
+        this.apiService.updateCustomers(user, id).subscribe((data) => {
+          console.log(data);
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+          this.userDialog = false;
 
         }, error => {
           this.msgs1 = [

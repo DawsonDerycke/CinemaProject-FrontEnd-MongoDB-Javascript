@@ -48,7 +48,6 @@ export class ListCategoriesComponent implements OnInit {
   getApi() {
     this.apiService.getCategories().subscribe(data => {
       this.categories = data;
-      console.log(this.categories);
 
     }, error => {
       this.msgs1 = [
@@ -82,10 +81,10 @@ export class ListCategoriesComponent implements OnInit {
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log(category);
         this.apiService.updateOneCategory(id, category).subscribe(data => {
-          this.categories = data;
+          console.log(data);
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+          this.categoryDialog = false;
 
         }, error => {
           console.log(error);

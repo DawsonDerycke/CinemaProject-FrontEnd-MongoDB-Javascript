@@ -1,7 +1,7 @@
 <p-messages [(value)]="msgs1" [enableService]="false"></p-messages>
 
 <p-table #dt [columns]="cols" [value]="movies" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+    currentPageReportTemplate="Affichage de {first} à {last} sur {totalRecords} enregistrement(s)" [rowsPerPageOptions]="[10,25,50]"
     styleClass="p-datatable-customers p-datatable-gridlines">
 
     <ng-template pTemplate="caption">
@@ -59,7 +59,7 @@
         </div>
         <div class="p-field">
             <label for="releaseDate">Date de sortie</label>
-            <input type="date" pInputText id="releaseDate" [(ngModel)]="modelMovie.releaseDate" required autofocus />
+            <input type="date" dateFormat="yy-mm-dd" dateType="date" pInputText id="releaseDate" [(ngModel)]="modelMovie.releaseDate" required autofocus />
         </div>
     </ng-template>
 
