@@ -10,7 +10,7 @@ const apiCustomers = "http://localhost:3000";
 export class ApiCustomersService {
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient) { }
 
   getCustomers(): Observable<Customers[]> {
     return this.httpClient.get<Customers[]>(apiCustomers + `/api/customers`);

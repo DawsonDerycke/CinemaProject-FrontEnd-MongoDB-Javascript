@@ -3,6 +3,7 @@ import { Table } from 'primeng/table';
 import { ApiMoviesService } from '../services/apiMovies.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Movies } from '../models/movies';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ListMoviesComponent implements OnInit {
     private apiService: ApiMoviesService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
+    private datePipe: DatePipe,
   ) { }
 
   ngOnInit(): void {
@@ -65,8 +67,15 @@ export class ListMoviesComponent implements OnInit {
   }
   // Boite modif
   editMovie(rowData: any) {
-    console.log(rowData);
-    this.modelMovie = rowData;
+    this.modelMovie = {
+      _id: rowData._id,
+      title: rowData.title,
+      price: rowData.price,
+      yearRequired: rowData.yearRequired,
+      releaseDate: this.datePipe.transform(rowData.releaseDate, 'yyyy-MM-dd')
+    };
+
+    console.log(this.modelMovie);
     this.movieDialog = true;
   }
 

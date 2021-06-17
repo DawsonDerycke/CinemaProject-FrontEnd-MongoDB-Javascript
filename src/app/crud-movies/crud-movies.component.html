@@ -14,8 +14,8 @@
             </div>
             <div class="p-field">
                 <label for="yearRequired">Age requis</label>
-                <p-dropdown id="yearRequired" [options]="year" [(ngModel)]="selectedYear" optionLabel="name"
-                    formControlName="yearRequired"></p-dropdown>
+                <p-dropdown id="yearRequired" [options]="year" optionLabel="name"
+                    formControlName="yearRequired" value="year"> {{year}}</p-dropdown>
             </div>
             <div class="p-field">
                 <label for="releaseDate">Date de sortie</label>

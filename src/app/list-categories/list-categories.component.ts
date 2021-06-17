@@ -3,6 +3,8 @@ import { Table } from 'primeng/table';
 import { ApiCategoriesService } from '../services/apiCategories.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Categories } from '../models/categories';
+import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-list-categories',
@@ -19,6 +21,34 @@ export class ListCategoriesComponent implements OnInit {
   submitted!: boolean;
   cols: any;
   msgs1!: Message[];
+
+  validation_message = {
+    'title': [
+      { type: 'required', message: 'Ce champ est obligatoire !'},
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 80 caractères !'},
+    ],
+    'category': [
+      { type: 'required', message: 'Ce champ est obligatoire !'},
+      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !'},
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !'},
+    ],
+    'duration': [
+      { type: 'required', message: 'Ce champ est obligatoire !'},
+      { type: 'min', message: 'La durée doit être de minimum 5 minutes !'},
+      { type: 'max', message: 'La durée doit être de maximum 600 minutes !'},
+    ],
+    'director': [
+      { type: 'required', message: 'Ce champ est obligatoire !'},
+      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !'},
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !'},
+    ],
+    'actor': [
+      { type: 'required', message: 'Ce champ est obligatoire !'},
+      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !'},
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !'},
+    ],
+
+  }
 
   constructor(
     private apiService: ApiCategoriesService,
@@ -119,5 +149,5 @@ export class ListCategoriesComponent implements OnInit {
       }
     });
   }
-  
+
 }

@@ -3,5 +3,5 @@ export interface Movies {
     title: string;
     price: number;
     yearRequired: number;
-    releaseDate: Date;
+    releaseDate: any;
 }

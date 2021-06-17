@@ -29,6 +29,8 @@ export class ListUsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+    this.getApi()
 
     // Colonne label property
     this.cols = [
@@ -37,6 +39,7 @@ export class ListUsersComponent implements OnInit {
       { field: 'movie', header: 'Film' },
       { field: 'seat', header: 'Siège' },
     ];
+
   }
 
   // Recherche

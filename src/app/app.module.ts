@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
 
@@ -81,7 +82,7 @@ import { ListRatingsComponent } from './list-ratings/list-ratings.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
