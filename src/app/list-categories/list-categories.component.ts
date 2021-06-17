@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ApiCategoriesService } from '../services/apiCategories.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Categories } from '../models/categories';
-import { Validators } from '@angular/forms';
-
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-categories',
@@ -12,8 +11,9 @@ import { Validators } from '@angular/forms';
   providers: [MessageService, ConfirmationService],
   styleUrls: ['./list-categories.component.scss']
 })
-export class ListCategoriesComponent implements OnInit {
+export class ListCategoriesComponent implements AfterViewInit, OnInit {
   @ViewChild('dt') dt!: Table;
+  cat!: FormGroup;
   categories: any;
   modelCategories!: Categories[];
   modelCategory!: Categories;
@@ -24,28 +24,28 @@ export class ListCategoriesComponent implements OnInit {
 
   validation_message = {
     'title': [
-      { type: 'required', message: 'Ce champ est obligatoire !'},
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 80 caractères !'},
+      { type: 'required', message: 'Ce champ est obligatoire !' },
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 80 caractères !' },
     ],
     'category': [
-      { type: 'required', message: 'Ce champ est obligatoire !'},
-      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !'},
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !'},
+      { type: 'required', message: 'Ce champ est obligatoire !' },
+      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !' },
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !' },
     ],
     'duration': [
-      { type: 'required', message: 'Ce champ est obligatoire !'},
-      { type: 'min', message: 'La durée doit être de minimum 5 minutes !'},
-      { type: 'max', message: 'La durée doit être de maximum 600 minutes !'},
+      { type: 'required', message: 'Ce champ est obligatoire !' },
+      { type: 'min', message: 'La durée doit être de minimum 5 minutes !' },
+      { type: 'max', message: 'La durée doit être de maximum 600 minutes !' },
     ],
     'director': [
-      { type: 'required', message: 'Ce champ est obligatoire !'},
-      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !'},
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !'},
+      { type: 'required', message: 'Ce champ est obligatoire !' },
+      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !' },
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !' },
     ],
     'actor': [
-      { type: 'required', message: 'Ce champ est obligatoire !'},
-      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !'},
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !'},
+      { type: 'required', message: 'Ce champ est obligatoire !' },
+      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !' },
+      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !' },
     ],
 
   }
@@ -54,11 +54,26 @@ export class ListCategoriesComponent implements OnInit {
     private apiService: ApiCategoriesService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-  ) { }
+    private formBuilder: FormBuilder,
+    private cd: ChangeDetectorRef,
+  ) {
+    this.cat = this.formBuilder.group({
+      title: ["", [Validators.required, Validators.maxLength(80)]],
+      category: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      duration: ["", [Validators.required, Validators.min(5), Validators.max(600)]],
+      director: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      actor: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+    });
+  }
+
+  loading: boolean = true;
 
   ngOnInit(): void {
 
     this.getApi();
+
+    this.loading = false;
+
 
     this.cols = [
       { field: 'title', header: 'Film' },
@@ -67,6 +82,14 @@ export class ListCategoriesComponent implements OnInit {
       { field: 'director', header: 'Réalisateur' },
       { field: 'actor', header: 'Acteur' }
     ];
+  }
+
+  ngAfterViewInit() {
+      this.loading = false;
+
+      this.categoryDialog = false;
+
+      this.cd.detectChanges();
   }
 
   // Recherche
