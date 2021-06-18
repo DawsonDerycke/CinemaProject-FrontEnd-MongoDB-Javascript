@@ -3,7 +3,7 @@ import { Table } from 'primeng/table';
 import { ApiCategoriesService } from '../services/apiCategories.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Categories } from '../models/categories';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-list-categories',
@@ -20,6 +20,12 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
   submitted!: boolean;
   cols: any;
   msgs1!: Message[];
+
+  title = new FormControl('');
+  category = new FormControl('');
+  duration = new FormControl('');
+  director = new FormControl('');
+  actor = new FormControl('');
 
   validation_message = {
     'title': [
@@ -125,7 +131,6 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
   saveUpdate() {
     let id = this.modelCategory._id;
     let category = this.modelCategory;
-    console.log(id);
 
     this.confirmationService.confirm({
       message: 'Voulez-vous mettre à jour cette information: \"' + category.title + '\" ?',

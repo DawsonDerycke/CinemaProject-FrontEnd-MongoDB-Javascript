@@ -22,7 +22,6 @@ export class CrudCategoriesComponent implements OnInit {
     private apiCategoriesService: ApiCategoriesService,
     private messageService: MessageService,
   ) {
-
     this.cat = this.formBuilder.group({
       title: ["", [Validators.required, Validators.maxLength(80)]],
       category: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
