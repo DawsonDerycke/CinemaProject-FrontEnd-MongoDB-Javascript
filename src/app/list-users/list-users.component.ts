@@ -3,6 +3,7 @@ import { Table } from 'primeng/table';
 import { ApiCustomersService } from '../services/apiCustomers.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Users } from '../models/users';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-users',
@@ -11,12 +12,10 @@ import { Users } from '../models/users';
   styleUrls: ['./list-users.component.scss']
 })
 export class ListUsersComponent implements OnInit {
+  customer!: FormGroup;
   @ViewChild('dt') dt!: Table;
   users: any;
-  rowData: any;
   cols: any;
-  customers!: Users[];
-  customer!: Users;
   user!: Users;
   msgs1!: Message[];
   userDialog!: boolean;
@@ -26,7 +25,16 @@ export class ListUsersComponent implements OnInit {
     private apiService: ApiCustomersService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-  ) { }
+    private formBuilder: FormBuilder,
+  ) { 
+    this.customer = this.formBuilder.group({
+      firstName: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      year: ["", [Validators.required, Validators.min(1), Validators.max(120)]],
+      movie: ["", [Validators.required, Validators.maxLength(80)]],
+      seat: ["", [Validators.required, Validators.maxLength(4)]],
+      ticket: [false, Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     

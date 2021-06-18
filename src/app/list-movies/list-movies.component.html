@@ -1,8 +1,8 @@
 <p-messages [(value)]="msgs1" [enableService]="false"></p-messages>
 
 <p-table #dt [columns]="cols" [value]="movies" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-    currentPageReportTemplate="Affichage de {first} à {last} sur {totalRecords} enregistrement(s)" [rowsPerPageOptions]="[10,25,50]"
-    styleClass="p-datatable-customers p-datatable-gridlines">
+    currentPageReportTemplate="Affichage de {first} à {last} sur {totalRecords} enregistrement(s)"
+    [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-customers p-datatable-gridlines">
 
     <ng-template pTemplate="caption">
         <span class="p-input-icon-left p-ml-auto">
@@ -42,30 +42,34 @@
 </p-table>
 
 <p-dialog [(visible)]="movieDialog" [style]="{width: '450px'}" header="Movies Details" [modal]="true"
-    styleClass="p-fluid">
+    [formGroup]="movie" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="title">Film</label>
-            <input type="text" maxlength="80" pInputText id="title" [(ngModel)]="modelMovie.title" required autofocus />
+            <input type="text" maxlength="80" pInputText id="title" [(ngModel)]="modelMovie.title"
+                formControlName="title" required autofocus />
         </div>
         <div class="p-field">
             <label for="price">Prix</label>
-            <input type="number" [min]="1" [max]="15" pInputText id="price" [(ngModel)]="modelMovie.price" required autofocus>
+            <input type="number" [min]="1" [max]="15" pInputText id="price" [(ngModel)]="modelMovie.price"
+                formControlName="price" required autofocus>
         </div>
         <div class="p-field">
             <label for="yearRequired">Age requis</label>
             <input type="text" pInputText id="yearRequired" [(ngModel)]="modelMovie.yearRequired"
-                required autofocus />
+                formControlName="yearRequired" required autofocus />
         </div>
         <div class="p-field">
             <label for="releaseDate">Date de sortie</label>
-            <input type="date" dateFormat="yyyy-MM-dd" dateType="date" pInputText id="releaseDate" [(ngModel)]="modelMovie.releaseDate" required autofocus />
+            <input type="date" dateFormat="yyyy-MM-dd" dateType="date" pInputText id="releaseDate"
+                [(ngModel)]="modelMovie.releaseDate" formControlName="releaseDate" required autofocus />
         </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUpdate()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUpdate()"
+            [disabled]="!movie.valid"></button>
     </ng-template>
 </p-dialog>
 

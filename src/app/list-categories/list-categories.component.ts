@@ -15,7 +15,6 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
   @ViewChild('dt') dt!: Table;
   cat!: FormGroup;
   categories: any;
-  modelCategories!: Categories[];
   modelCategory!: Categories;
   categoryDialog!: boolean;
   submitted!: boolean;
@@ -73,7 +72,6 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
     this.getApi();
 
     this.loading = false;
-
 
     this.cols = [
       { field: 'title', header: 'Film' },

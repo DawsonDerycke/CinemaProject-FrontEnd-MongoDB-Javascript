@@ -21,18 +21,12 @@ export class AppComponent {
                         {
                             label: 'BDD:',
                             items:
-                                [
-                                    { label: 'Tableau films', routerLink: 'movies' },
-                                    { label: 'Tableau notes', routerLink: 'ratings' }
-                                ]
+                                [{ label: 'Tableau films', routerLink: 'movies' },]
                         },
                         {
                             label: 'Ajout:',
                             items:
-                                [
-                                    { label: 'Création film', routerLink: 'crudMovies' },
-                                    { label: 'Création note', routerLink: 'crudRatings' }
-                                ]
+                                [{ label: 'Création film', routerLink: 'crudMovies' },]
                         },
                     ],
                 ]

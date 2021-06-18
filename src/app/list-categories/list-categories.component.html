@@ -38,42 +38,43 @@
     </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Catagory Details" [modal]="true" [formGroup]="cat"
-    styleClass="p-fluid">
-        <ng-template pTemplate="content">
-            <div class="p-field">
-                <label for="title"> Film </label>
-                <input type="text" maxlength="80" pInputText id="title" [(ngModel)]="modelCategory.title"
-                    formControlName="title" required autofocus />
-            </div>
-            <div class="p-field">
-                <label for="category"> Catégorie </label>
-                <input type="text" maxlength="25" pInputText id="category" [(ngModel)]="modelCategory.category"
-                    formControlName="category" required autofocus />
-            </div>
-            <div class="p-field">
-                <label for="duration"> Durée du film </label>
-                <input type="number" [min]="5" [max]="600" pInputText id="duration" [(ngModel)]="modelCategory.duration"
-                    formControlName="duration" required autofocus />
-            </div>
-            <div class="p-field">
-                <label for="director"> Réalisateur </label>
-                <input type="text" minlength="3" maxlength="25" pInputText id="director"
-                    [(ngModel)]="modelCategory.director" formControlName="director" required autofocus />
-            </div>
-            <div class="p-field">
-                <label for="actor"> Acteur </label>
-                <input type="text" minlength="3" maxlength="25" pInputText id="actor" [(ngModel)]="modelCategory.actor"
-                    formControlName="actor" required autofocus />
-            </div>
-        </ng-template>
+<p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Catagory Details" [modal]="true"
+    [formGroup]="cat" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="title"> Film </label>
+            <input type="text" maxlength="80" pInputText id="title" [(ngModel)]="modelCategory.title"
+                formControlName="title" required autofocus />
 
-        <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-                (click)="hideDialog()"></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-                (click)="saveUpdate()"></button>
-        </ng-template>
+          
+        </div>
+        <div class="p-field">
+            <label for="category"> Catégorie </label>
+            <input type="text" maxlength="25" pInputText id="category" [(ngModel)]="modelCategory.category"
+                formControlName="category" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="duration"> Durée du film </label>
+            <input type="number" [min]="5" [max]="600" pInputText id="duration" [(ngModel)]="modelCategory.duration"
+                formControlName="duration" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="director"> Réalisateur </label>
+            <input type="text" minlength="3" maxlength="25" pInputText id="director"
+                [(ngModel)]="modelCategory.director" formControlName="director" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="actor"> Acteur </label>
+            <input type="text" minlength="3" maxlength="25" pInputText id="actor" [(ngModel)]="modelCategory.actor"
+                formControlName="actor" required autofocus />
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUpdate()"
+            [disabled]="!cat.valid"></button>
+    </ng-template>
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

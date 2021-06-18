@@ -39,8 +39,6 @@ import { CrudUsersComponent } from './crud-users/crud-users.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { CrudCategoriesComponent } from './crud-categories/crud-categories.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
-import { CrudRatingsComponent } from './crud-ratings/crud-ratings.component';
-import { ListRatingsComponent } from './list-ratings/list-ratings.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +49,6 @@ import { ListRatingsComponent } from './list-ratings/list-ratings.component';
     ListUsersComponent,
     CrudCategoriesComponent,
     ListCategoriesComponent,
-    CrudRatingsComponent,
-    ListRatingsComponent,
   ],
   imports: [
     BrowserModule,

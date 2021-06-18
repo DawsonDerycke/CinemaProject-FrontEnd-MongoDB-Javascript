@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customers } from '../models/customers';
+import { Users } from '../models/users';
 
 const apiCustomers = "http://localhost:3000";
 @Injectable({
@@ -12,8 +12,8 @@ export class ApiCustomersService {
 
   constructor(public httpClient: HttpClient) { }
 
-  getCustomers(): Observable<Customers[]> {
-    return this.httpClient.get<Customers[]>(apiCustomers + `/api/customers`);
+  getCustomers(): Observable<Users[]> {
+    return this.httpClient.get<Users[]>(apiCustomers + `/api/customers`);
   }
 
   addCustomers(dataCustomers: any) {

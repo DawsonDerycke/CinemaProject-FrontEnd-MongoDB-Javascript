@@ -4,7 +4,7 @@ import { ApiMoviesService } from '../services/apiMovies.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Movies } from '../models/movies';
 import { DatePipe } from '@angular/common';
-
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-movies',
@@ -13,9 +13,9 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./list-movies.component.scss']
 })
 export class ListMoviesComponent implements OnInit {
+  movie!: FormGroup;
   @ViewChild('dt') dt!: Table;
   movies: any;
-  modelMovies!: Movies[];
   modelMovie!: Movies;
   movieDialog!: boolean;
   submitted!: boolean;
@@ -27,7 +27,15 @@ export class ListMoviesComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private datePipe: DatePipe,
-  ) { }
+    private formBuilder: FormBuilder,
+  ) {
+    this.movie = this.formBuilder.group({
+      title: ["", [Validators.required, Validators.max(80)]],
+      price: ["", [Validators.required, Validators.min(1), Validators.max(15)]],
+      yearRequired: ["", [Validators.required, Validators.min(0), Validators.max(18)]],
+      releaseDate: ["", Validators.required],
+    });
+  }
 
   ngOnInit(): void {
 
