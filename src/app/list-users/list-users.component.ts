@@ -42,10 +42,10 @@ export class ListUsersComponent implements OnInit {
 
     // Colonne label property
     this.cols = [
-      { field: 'firstName', header: 'Prénom' },
+      { field: 'firstName', header: 'Prenom' },
       { field: 'year', header: 'Age' },
       { field: 'movie', header: 'Film' },
-      { field: 'seat', header: 'Siège' },
+      { field: 'seat', header: 'Siege' },
     ];
 
   }

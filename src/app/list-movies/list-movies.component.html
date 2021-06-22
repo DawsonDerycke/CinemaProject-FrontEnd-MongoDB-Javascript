@@ -7,14 +7,14 @@
     <ng-template pTemplate="caption">
         <span class="p-input-icon-left p-ml-auto">
             <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search">
+            <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Recherche">
         </span>
     </ng-template>
 
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
+                {{col.header | upperCase}}
                 <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
             <th> Action </th>

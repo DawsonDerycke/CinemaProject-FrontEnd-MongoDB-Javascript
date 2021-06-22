@@ -39,6 +39,7 @@ import { CrudUsersComponent } from './crud-users/crud-users.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { CrudCategoriesComponent } from './crud-categories/crud-categories.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
+import { UpperCasePipe } from './upper-case.pipe';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
     ListUsersComponent,
     CrudCategoriesComponent,
     ListCategoriesComponent,
+    UpperCasePipe,
   ],
   imports: [
     BrowserModule,

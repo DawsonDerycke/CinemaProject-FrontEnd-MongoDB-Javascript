@@ -81,9 +81,9 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
 
     this.cols = [
       { field: 'title', header: 'Film' },
-      { field: 'category', header: 'Catégorie' },
-      { field: 'duration', header: 'Durée en minutes' },
-      { field: 'director', header: 'Réalisateur' },
+      { field: 'category', header: 'Categorie' },
+      { field: 'duration', header: 'Duree (minutes)' },
+      { field: 'director', header: 'Realisateur' },
       { field: 'actor', header: 'Acteur' }
     ];
   }
