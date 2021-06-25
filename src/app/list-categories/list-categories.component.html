@@ -9,6 +9,7 @@
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Recherche">
         </span>
+        <app-button-add></app-button-add>
     </ng-template>
 
     <ng-template pTemplate="header" let-columns>
@@ -17,7 +18,7 @@
                 {{col.header | upperCase}}
                 <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
-            <th> Action </th>
+            <th> ACTION </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -45,26 +46,44 @@
             <label for="title"> Film </label>
             <input type="text" maxlength="80" pInputText id="title" [(ngModel)]="modelCategory.title"
                 formControlName="title" required autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.title == ''">{{errorMessage.title[0].message}}</span>
         </div>
         <div class="p-field">
             <label for="category"> Catégorie </label>
             <input type="text" maxlength="25" pInputText id="category" [(ngModel)]="modelCategory.category"
                 formControlName="category" required autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.category == ''">{{errorMessage.category[0].message}}</span>
         </div>
         <div class="p-field">
             <label for="duration"> Durée du film </label>
             <input type="number" [min]="5" [max]="600" pInputText id="duration" [(ngModel)]="modelCategory.duration"
                 formControlName="duration" required autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.duration < 5">{{errorMessage.duration[0].message}}</span>
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.duration > 600">{{errorMessage.duration[1].message}}</span>
+                
         </div>
         <div class="p-field">
             <label for="director"> Réalisateur </label>
             <input type="text" minlength="3" maxlength="25" pInputText id="director"
                 [(ngModel)]="modelCategory.director" formControlName="director" required autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.director == ''">{{errorMessage.director[0].message}}</span>
         </div>
         <div class="p-field">
             <label for="actor"> Acteur </label>
             <input type="text" minlength="3" maxlength="25" pInputText id="actor" [(ngModel)]="modelCategory.actor"
                 formControlName="actor" required autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.actor == ''">{{errorMessage.actor[0].message}}</span>
         </div>
     </ng-template>
 

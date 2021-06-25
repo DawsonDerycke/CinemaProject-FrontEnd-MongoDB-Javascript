@@ -21,6 +21,22 @@ export class ListUsersComponent implements OnInit {
   userDialog!: boolean;
   submitted!: boolean;
 
+  errorMessage = {
+    'firstName': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'year': [
+      { type: 'min', message: ' L\'age minimum est de 1 an !' },
+      { type: 'max', message: ' L\'age maximum est de 120 an !' },
+    ],
+    'movie': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'seat': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+  }
+
   constructor(
     private apiService: ApiCustomersService,
     private messageService: MessageService,

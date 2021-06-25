@@ -17,12 +17,32 @@ export class CrudCategoriesComponent implements OnInit {
   director = new FormControl('');
   actor = new FormControl('');
 
+  submitted: boolean = false;
+
+  errorMessage = {
+    'title': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'category': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'duration': [
+      { type: 'required', message: ' Insérez une durée entre 5 et 600 minutes !' },
+    ],
+    'director': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'actor': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+  }
+
   constructor(
-    private formBuilder: FormBuilder,
-    private apiCategoriesService: ApiCategoriesService,
-    private messageService: MessageService,
+    private _formBuilder: FormBuilder,
+    private _apiCategoriesService: ApiCategoriesService,
+    private _messageService: MessageService,
   ) {
-    this.cat = this.formBuilder.group({
+    this.cat = this._formBuilder.group({
       title: ["", [Validators.required, Validators.maxLength(80)]],
       category: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       duration: ["", [Validators.required, Validators.min(5), Validators.max(600)]],
@@ -36,15 +56,21 @@ export class CrudCategoriesComponent implements OnInit {
 
   saveCat() {
     let dataCategories = this.cat.value;
+    this.submitted = true;
+    const valid = this.cat.valid;
 
-    this.apiCategoriesService.addCategories(dataCategories).subscribe(res => {
-      console.log(res)
-      this.messageService.add({ severity: 'success', summary: 'Création catégorie:', detail: 'Ajout réussi' });
+    if (valid) {
 
-      this.cat.reset();
-    }, error => {
-      console.log(error);
-      this.messageService.add({ severity: 'error', summary: 'Création catégorie:', detail: 'Une erreur est survenue' });
-    });
+      this._apiCategoriesService.addCategories(dataCategories).subscribe(res => {
+        console.log(res)
+        this._messageService.add({ severity: 'success', summary: 'Création catégorie:', detail: 'Ajout réussi' });
+
+        this.cat.reset();
+
+      }, error => {
+        console.log(error);
+        this._messageService.add({ severity: 'error', summary: 'Création catégorie:', detail: 'Une erreur est survenue' });
+      });
+    }
   }
 }

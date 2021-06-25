@@ -40,6 +40,9 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { CrudCategoriesComponent } from './crud-categories/crud-categories.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { UpperCasePipe } from './upper-case.pipe';
+import { ButtonAddComponent } from './button-add/button-add.component';
+import { ButtonAddUserComponent } from './button-add-user/button-add-user.component';
+import { ButtonAddMovieComponent } from './button-add-movie/button-add-movie.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { UpperCasePipe } from './upper-case.pipe';
     CrudCategoriesComponent,
     ListCategoriesComponent,
     UpperCasePipe,
+    ButtonAddComponent,
+    ButtonAddUserComponent,
+    ButtonAddMovieComponent,
   ],
   imports: [
     BrowserModule,

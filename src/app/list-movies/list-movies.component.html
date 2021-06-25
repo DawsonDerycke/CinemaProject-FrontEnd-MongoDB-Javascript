@@ -9,6 +9,7 @@
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Recherche">
         </span>
+        <app-button-add-movie></app-button-add-movie>
     </ng-template>
 
     <ng-template pTemplate="header" let-columns>
@@ -17,7 +18,7 @@
                 {{col.header | upperCase}}
                 <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
-            <th> Action </th>
+            <th> ACTION </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -48,21 +49,42 @@
             <label for="title">Film</label>
             <input type="text" maxlength="80" pInputText id="title" [(ngModel)]="modelMovie.title"
                 formControlName="title" required autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="movie.value.title == ''">{{errorMessage.title[0].message}}</span>
         </div>
         <div class="p-field">
             <label for="price">Prix</label>
             <input type="number" [min]="1" [max]="15" pInputText id="price" [(ngModel)]="modelMovie.price"
                 formControlName="price" required autofocus>
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="movie.value.price < 1">{{errorMessage.price[0].message}}</span>
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="movie.value.price > 15">{{errorMessage.price[1].message}}</span>
         </div>
         <div class="p-field">
             <label for="yearRequired">Age requis</label>
-            <input type="text" pInputText id="yearRequired" [(ngModel)]="modelMovie.yearRequired"
-                formControlName="yearRequired" required autofocus />
+            <select pInputText id="yearRequired" [(ngModel)]="modelMovie.yearRequired" formControlName="yearRequired"
+                required autofocus>
+                <option value="">-- Faites un choix: --</option>
+                <option value="0">Tous</option>
+                <option value="3">Maternelle (-3)</option>
+                <option value="7">Enfant (-7)</option>
+                <option value="12">Adolescent (-12)</option>
+                <option value="18">Adulte (-18)</option>
+            </select>
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="movie.value.yearRequired == ''">{{errorMessage.yearRequired[0].message}}</span>
         </div>
         <div class="p-field">
             <label for="releaseDate">Date de sortie</label>
             <input type="date" dateFormat="yyyy-MM-dd" dateType="date" pInputText id="releaseDate"
                 [(ngModel)]="modelMovie.releaseDate" formControlName="releaseDate" required autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="movie.value.releaseDate == ''">{{errorMessage.releaseDate[0].message}}</span>
         </div>
     </ng-template>
 

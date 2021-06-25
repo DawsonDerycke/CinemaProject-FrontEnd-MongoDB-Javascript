@@ -6,25 +6,37 @@
             <div class="p-field">
                 <label for="title">Titre</label>
                 <input id="title" maxlength="80" type="text" formControlName="title" pInputText>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.title == ''">{{errorMessage.title[0].message}}</span>
             </div>
             <div class="p-field">
                 <label for="price">Prix</label>
                 <p-inputNumber mode="currency" [min]="1" [max]="15" currency="EUR" formControlName="price">
                 </p-inputNumber>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.price == ''">{{errorMessage.price[0].message}}</span>
             </div>
             <div class="p-field">
                 <label for="yearRequired">Age requis</label>
-                <p-dropdown id="yearRequired" [options]="year" optionLabel="name"
-                    formControlName="yearRequired" value="year"> {{year}}</p-dropdown>
+                <p-dropdown id="yearRequired" [options]="year" optionLabel="name" formControlName="yearRequired"
+                    value="year"> {{year}}</p-dropdown>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.yearRequired == ''">{{errorMessage.yearRequired[0].message}}</span>
             </div>
             <div class="p-field">
                 <label for="releaseDate">Date de sortie</label>
                 <p-calendar id="releaseDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
                     inputId="navigators" dateFormat="yy-mm-dd" dateType="date" formControlName="releaseDate">
                 </p-calendar>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.releaseDate == ''">{{errorMessage.releaseDate[0].message}}</span>
             </div>
         </div>
         <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-check"
-            (click)="saveMovie();" [disabled]="!movie.valid"></button>
+            (click)="saveMovie();" ></button>
     </form>
 </p-panel>

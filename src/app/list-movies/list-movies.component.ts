@@ -22,6 +22,22 @@ export class ListMoviesComponent implements OnInit {
   cols: any;
   msgs1!: Message[];
 
+  errorMessage = {
+    'title': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'price': [
+      { type: 'min', message: ' Le prix ne peut pas être en dessous de 1€ !' },
+      { type: 'max', message: ' Le prix ne peut pas être au dessus de 15€ !' },
+    ],
+    'yearRequired': [
+      { type: 'required', message: ' Selectionnez une proposition !' },
+    ],
+    'releaseDate': [
+      { type: 'required', message: ' Ajoutez une date !' },
+    ],
+  }
+
   constructor(
     private apiService: ApiMoviesService,
     private messageService: MessageService,

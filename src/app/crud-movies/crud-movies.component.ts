@@ -17,18 +17,34 @@ export class CrudMoviesComponent implements OnInit {
   price = new FormControl('');
   yearRequired = new FormControl('');
   releaseDate = new FormControl('');
+  submitted: boolean = false;
 
   selectedYear!: YearRequired;
   year: YearRequired[];
 
+  errorMessage = {
+    'title': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'price': [
+      { type: 'required', message: ' Veuillez insérer un prix entre 1 et 15€ !' },
+    ],
+    'yearRequired': [
+      { type: 'required', message: ' Selectionnez une proposition !' },
+    ],
+    'releaseDate': [
+      { type: 'required', message: ' Ajoutez une date !' },
+    ],
+  }
+
   constructor(
-    private formBuilder: FormBuilder,
-    private apiMoviesService: ApiMoviesService,
-    private messageService: MessageService,
+    private _formBuilder: FormBuilder,
+    private _apiMoviesService: ApiMoviesService,
+    private _messageService: MessageService,
   ) {
 
     this.year = [
-      { name: "Faites un choix:", code: "" },
+      { name: "-- Faites un choix: --", code: "" },
       { name: "Tous", code: "0" },
       { name: "Maternelle (-3)", code: "3" },
       { name: "Enfant (-7)", code: "7" },
@@ -36,7 +52,7 @@ export class CrudMoviesComponent implements OnInit {
       { name: "Adulte (-18)", code: "18" },
     ];
 
-    this.movie = this.formBuilder.group({
+    this.movie = this._formBuilder.group({
       title: ["", [Validators.required, Validators.max(80)]],
       price: ["", [Validators.required, Validators.min(1), Validators.max(15)]],
       yearRequired: ["", [Validators.required, Validators.min(0), Validators.max(18)]],
@@ -48,23 +64,27 @@ export class CrudMoviesComponent implements OnInit {
   }
 
   saveMovie() {
+    this.submitted = true;
+    const valid = this.movie.valid;
     let dataMovies = {
       title: this.movie.value.title,
       price: this.movie.value.price,
       yearRequired: this.movie.value.yearRequired.code,
       releaseDate: moment(this.movie.value.releaseDate).format('YYYY-MM-DD')
-
     }
 
-    this.apiMoviesService.addMovies(dataMovies).subscribe(res => {
-      console.log(res);
-      this.messageService.add({ severity: 'success', summary: 'Création film:', detail: 'Ajout réussi' });
+    if (valid) {
+      this._apiMoviesService.addMovies(dataMovies).subscribe(res => {
+        console.log(res);
+        this._messageService.add({ severity: 'success', summary: 'Création film:', detail: 'Ajout réussi' });
 
-      this.movie.reset();
-    }, error => {
-      console.log(error);
-      this.messageService.add({ severity: 'error', summary: 'Création film:', detail: 'Une erreur est survenue' });
-    });
+        this.movie.reset();
+
+      }, error => {
+        console.log(error);
+        this._messageService.add({ severity: 'error', summary: 'Création film:', detail: 'Une erreur est survenue' });
+      });
+    }
   }
 
 }

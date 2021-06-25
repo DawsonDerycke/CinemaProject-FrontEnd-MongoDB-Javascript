@@ -16,13 +16,30 @@ export class CrudUsersComponent implements OnInit {
   movie = new FormControl('');
   seat = new FormControl('');
 
+  submitted: boolean = false;
+
+  errorMessage = {
+    'firstName': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'year': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'movie': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+    'seat': [
+      { type: 'required', message: ' Ce champ est obligatoire !' },
+    ],
+  }
+
   constructor(
-    private formBuilder: FormBuilder,
-    private apiCustomersService: ApiCustomersService,
-    private messageService: MessageService
+    private _formBuilder: FormBuilder,
+    private _apiCustomersService: ApiCustomersService,
+    private _messageService: MessageService,
   ) {
 
-    this.user = this.formBuilder.group({
+    this.user = this._formBuilder.group({
       firstName: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       year: ["", [Validators.required, Validators.min(1), Validators.max(120)]],
       movie: ["", [Validators.required, Validators.maxLength(80)]],
@@ -34,19 +51,27 @@ export class CrudUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get f() {
+    return this.user.controls;
+  }
+
   saveUser() {
     let dataCustomers = this.user.value;
+    this.submitted = true;
+    const valid = this.user.valid;
 
-    this.apiCustomersService.addCustomers(dataCustomers).subscribe(res => {
-      console.log(res)
-      this.messageService.add({ severity: 'success', summary: 'Création client:', detail: 'Ajout réussi' });
+    if (valid) {
+      this._apiCustomersService.addCustomers(dataCustomers).subscribe(res => {
+        console.log(res)
+        this._messageService.add({ severity: 'success', summary: 'Création client:', detail: 'Ajout réussi' });
 
-      this.user.reset();
+        this.user.reset();
 
-    }, error => {
-      console.log(error);
-      this.messageService.add({ severity: 'error', summary: 'Création client:', detail: 'Une erreur est survenue' });
-    });
+      }, error => {
+        console.log(error);
+        this._messageService.add({ severity: 'error', summary: 'Création client:', detail: 'Une erreur est survenue' });
+      });
+    }
   }
 
 }

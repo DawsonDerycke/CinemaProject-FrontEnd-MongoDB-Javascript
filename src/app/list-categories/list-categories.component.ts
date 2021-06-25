@@ -27,34 +27,25 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
   director = new FormControl('');
   actor = new FormControl('');
 
-  validation_message = {
+  errorMessage = {
     'title': [
-      { type: 'required', message: 'Ce champ est obligatoire !' },
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 80 caractères !' },
+      { type: 'required', message: ' Ce champ est obligatoire !' },
     ],
     'category': [
-      { type: 'required', message: 'Ce champ est obligatoire !' },
-      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !' },
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !' },
+      { type: 'required', message: ' Ce champ est obligatoire !' },
     ],
     'duration': [
-      { type: 'required', message: 'Ce champ est obligatoire !' },
-      { type: 'min', message: 'La durée doit être de minimum 5 minutes !' },
-      { type: 'max', message: 'La durée doit être de maximum 600 minutes !' },
+      { type: 'min', message: ' La durée est de minimum 5 minutes !' },
+      { type: 'max', message: ' La durée est de maximum 600 minutes !' },
     ],
     'director': [
-      { type: 'required', message: 'Ce champ est obligatoire !' },
-      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !' },
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !' },
+      { type: 'required', message: ' Ce champ est obligatoire !' },
     ],
     'actor': [
-      { type: 'required', message: 'Ce champ est obligatoire !' },
-      { type: 'minlength', message: 'Le champ doit contenir minimum 3 caractères !' },
-      { type: 'maxlength', message: 'Le champ peut contenir maximum 25 caractères !' },
+      { type: 'required', message: ' Ce champ est obligatoire !' },
     ],
-
   }
-
+  
   constructor(
     private apiService: ApiCategoriesService,
     private messageService: MessageService,
