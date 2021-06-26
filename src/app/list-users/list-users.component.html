@@ -39,21 +39,20 @@
     </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="userDialog" [style]="{width: '450px'}" header="Users Details" [modal]="true"
+<p-dialog [(visible)]="userDialog" [style]="{width: '450px'}" header="Mise à jour du client" [modal]="true"
     [formGroup]="customer" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="firstName">Prénom</label>
-            <input type="text" minlength="2" maxlength="25" pInputText id="firstName" [(ngModel)]="user.firstName"
-                formControlName="firstName" required autofocus />
+            <input type="text" minlength="2" maxlength="25" pInputText id="firstName" formControlName="firstName"
+                required autofocus />
 
             <span class="pi pi-exclamation-triangle"
                 *ngIf="customer.value.firstName == ''">{{errorMessage.firstName[0].message}}</span>
         </div>
         <div class="p-field">
             <label for="year">Age</label>
-            <input type="number" [min]="1" [max]="120" pInputText id="year" [(ngModel)]="user.year" required
-                formControlName="year" autofocus />
+            <input type="number" [min]="1" [max]="120" pInputText id="year" required formControlName="year" autofocus />
 
             <span class="pi pi-exclamation-triangle"
                 *ngIf="customer.value.year < 1">{{errorMessage.year[0].message}}</span>
@@ -62,16 +61,14 @@
         </div>
         <div class="p-field">
             <label for="movie">Film</label>
-            <input type="text" maxlength="80" pInputText id="movie" [(ngModel)]="user.movie" formControlName="movie"
-                required autofocus />
+            <input type="text" maxlength="80" pInputText id="movie" formControlName="movie" required autofocus />
 
             <span class="pi pi-exclamation-triangle"
                 *ngIf="customer.value.movie == ''">{{errorMessage.movie[0].message}}</span>
         </div>
         <div class="p-field">
             <label for="seat">Siège</label>
-            <input type="text" maxlength="4" pInputText id="seat" [(ngModel)]="user.seat" formControlName="seat"
-                required autofocus />
+            <input type="text" maxlength="4" pInputText id="seat" formControlName="seat" required autofocus />
 
             <span class="pi pi-exclamation-triangle"
                 *ngIf="customer.value.seat == ''">{{errorMessage.seat[0].message}}</span>

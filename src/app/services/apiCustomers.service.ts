@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Users } from '../models/users';
@@ -10,22 +10,26 @@ const apiCustomers = "http://localhost:3000";
 export class ApiCustomersService {
 
 
-  constructor(public httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) { }
 
   getCustomers(): Observable<Users[]> {
-    return this.httpClient.get<Users[]>(apiCustomers + `/api/customers`);
+    return this._httpClient.get<Users[]>(apiCustomers + `/api/customers`);
+  }
+  
+  getCustomersId(id: string): Observable<Users[]> {
+    return this._httpClient.get<Users[]>(apiCustomers + `/api/customers/${id}`);
   }
 
   addCustomers(dataCustomers: any) {
-    return this.httpClient.post(apiCustomers + `/api/customers`, dataCustomers);
+    return this._httpClient.post(apiCustomers + `/api/customers`, dataCustomers);
   }
 
-  updateCustomers(dataCustomers: any, id: any) {
-    return this.httpClient.post(apiCustomers + `/api/customers/${id}`, dataCustomers);
+  updateCustomers(dataCustomers: any, id: string) {
+    return this._httpClient.post(apiCustomers + `/api/customers/${id}`, dataCustomers);
   }
 
-  deleteOneCustomer(idToDelete: any) {
-    return this.httpClient.delete(apiCustomers + `/api/customers/${idToDelete}`);
+  deleteOneCustomer(idToDelete: string) {
+    return this._httpClient.delete(apiCustomers + `/api/customers/${idToDelete}`);
   }
 
 }

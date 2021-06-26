@@ -11,22 +11,26 @@ const apiCategories= "http://localhost:3000";
 export class ApiCategoriesService {
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) { }
 
   getCategories(): Observable<Categories[]> {
-    return this.httpClient.get<Categories[]>(apiCategories + `/api/categories`);
+    return this._httpClient.get<Categories[]>(apiCategories + `/api/categories`);
+  } 
+
+  getCategoryId(id: string): Observable<Categories[]> {
+    return this._httpClient.get<Categories[]>(apiCategories + `/api/categories/${id}`);
   } 
 
   addCategories(dataCategories: any) {
-    return this.httpClient.post(apiCategories + `/api/categories`, dataCategories);
+    return this._httpClient.post(apiCategories + `/api/categories`, dataCategories);
   }
 
-  updateOneCategory(id: any, dataCategory: any) {
-    return this.httpClient.post(apiCategories + `/api/categories/${id}`, dataCategory);
+  updateCategory(id: string, dataCategory: any) {
+    return this._httpClient.post(apiCategories + `/api/categories/${id}`, dataCategory);
   }
 
-  deleteOneCategory(idToDelete: any) {
-    return this.httpClient.delete(apiCategories + `/api/categories/${idToDelete}`);
+  deleteCategory(idToDelete: string) {
+    return this._httpClient.delete(apiCategories + `/api/categories/${idToDelete}`);
   }
 
 }

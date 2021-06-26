@@ -4,6 +4,7 @@ import { ApiCustomersService } from '../services/apiCustomers.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Users } from '../models/users';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-users',
@@ -38,12 +39,12 @@ export class ListUsersComponent implements OnInit {
   }
 
   constructor(
-    private apiService: ApiCustomersService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-    private formBuilder: FormBuilder,
-  ) { 
-    this.customer = this.formBuilder.group({
+    private _apiService: ApiCustomersService,
+    private _messageService: MessageService,
+    private _confirmationService: ConfirmationService,
+    private _formBuilder: FormBuilder,
+  ) {
+    this.customer = this._formBuilder.group({
       firstName: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       year: ["", [Validators.required, Validators.min(1), Validators.max(120)]],
       movie: ["", [Validators.required, Validators.maxLength(80)]],
@@ -53,7 +54,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     this.getApi()
 
     // Colonne label property
@@ -73,7 +74,7 @@ export class ListUsersComponent implements OnInit {
 
   // Récupérer les données
   getApi() {
-    this.apiService.getCustomers().subscribe(data => {
+    this._apiService.getCustomers().subscribe(data => {
       this.users = data;
 
     }, error => {
@@ -84,29 +85,6 @@ export class ListUsersComponent implements OnInit {
     });
   }
 
-  // Supprimer 
-  deleteUser(rowData: any) {
-    this.user = rowData;
-    let idToDelete = rowData._id;
-
-    this.confirmationService.confirm({
-      message: 'Voulez-vous vraiment supprimer ' + this.user.firstName + '?',
-      header: 'Confirmer',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.apiService.deleteOneCustomer(idToDelete).subscribe(data => {
-          this.users = data;
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
-
-        }, error => {
-          console.log(error);
-          this.msgs1 = [
-            { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer l\'utilisateur !' },
-          ];
-        });
-      }
-    });
-  }
 
   // Boite de dialogue
   hideDialog() {
@@ -116,7 +94,9 @@ export class ListUsersComponent implements OnInit {
 
   // Boite Modif
   editUser(rowData: any) {
-    console.log(rowData);
+    let id = rowData._id;
+    this._apiService.getCustomersId(id).pipe(first()).subscribe(x => this.customer.patchValue(x));
+
     this.user = rowData;
     this.userDialog = true;
   }
@@ -124,23 +104,54 @@ export class ListUsersComponent implements OnInit {
   // Sauve Modif
   saveUpdate() {
     let id = this.user._id;
-    let user = this.user;
+    let user = this.customer.value;
 
-    this.confirmationService.confirm({
+    this._confirmationService.confirm({
       message: 'Voulez-vous mettre à jour cette information \"' + user.firstName + '\" ?',
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.updateCustomers(user, id).subscribe((data) => {
+        this._apiService.updateCustomers(user, id).subscribe((data) => {
           console.log(data);
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+          this._messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
           this.userDialog = false;
 
+          this.refreshList();
         }, error => {
           this.msgs1 = [
             { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
           ];
           console.log(error);
+        });
+      }
+    });
+  }
+
+  // Refresh 
+  refreshList(): void {
+    this.getApi();
+  }
+
+  // Supprimer 
+  deleteUser(rowData: any) {
+    this.user = rowData;
+    let idToDelete = rowData._id;
+
+    this._confirmationService.confirm({
+      message: 'Voulez-vous vraiment supprimer \"' + this.user.firstName + '\" ?',
+      header: 'Confirmer',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this._apiService.deleteOneCustomer(idToDelete).subscribe(data => {
+          this.users = data;
+          this._messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+
+          this.refreshList();
+        }, error => {
+          console.log(error);
+          this.msgs1 = [
+            { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer l\'utilisateur !' },
+          ];
         });
       }
     });

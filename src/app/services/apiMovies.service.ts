@@ -10,21 +10,25 @@ const apiMovies= "http://localhost:3000";
 })
 export class ApiMoviesService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) { }
 
   getMovies(): Observable<Movies[]> {
-    return this.httpClient.get<Movies[]>(apiMovies + `/api/movies`);
+    return this._httpClient.get<Movies[]>(apiMovies + `/api/movies`);
+  } 
+  
+  getMoviesId(id: string): Observable<Movies[]> {
+    return this._httpClient.get<Movies[]>(apiMovies + `/api/movies/${id}`);
   } 
 
   addMovies(dataMovies: any) {
-    return this.httpClient.post(apiMovies + `/api/movies`, dataMovies);
+    return this._httpClient.post(apiMovies + `/api/movies`, dataMovies);
   } 
 
-  updateOneMovie(id: any, dataMovies: any) {
-    return this.httpClient.post(apiMovies + `/api/movies/${id}`, dataMovies);
+  updateMovie(id: string, dataMovies: any) {
+    return this._httpClient.post(apiMovies + `/api/movies/${id}`, dataMovies);
   }
 
-  deleteOneMovie(idToDelete: any) {
-    return this.httpClient.delete(apiMovies + `/api/movies/${idToDelete}`);
+  deleteMovie(idToDelete: string) {
+    return this._httpClient.delete(apiMovies + `/api/movies/${idToDelete}`);
   }
 }

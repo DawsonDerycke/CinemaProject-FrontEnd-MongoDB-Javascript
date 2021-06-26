@@ -31,6 +31,7 @@ export class CrudCategoriesComponent implements OnInit {
     ],
     'director': [
       { type: 'required', message: ' Ce champ est obligatoire !' },
+      { type: 'minlenght', message: ' Le champ doit contenir minimum 3 caractères !' },
     ],
     'actor': [
       { type: 'required', message: ' Ce champ est obligatoire !' },
@@ -58,7 +59,6 @@ export class CrudCategoriesComponent implements OnInit {
     let dataCategories = this.cat.value;
     this.submitted = true;
     const valid = this.cat.valid;
-
     if (valid) {
 
       this._apiCategoriesService.addCategories(dataCategories).subscribe(res => {

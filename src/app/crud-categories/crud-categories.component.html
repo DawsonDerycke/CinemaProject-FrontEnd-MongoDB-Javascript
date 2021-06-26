@@ -7,13 +7,15 @@
                 <label for="title"> Film </label>
                 <input id="title" maxlength="80" type="text" formControlName="title" pInputText>
 
-                <span class="pi pi-exclamation-triangle" *ngIf="submitted && cat.value.title == ''">{{errorMessage.title[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.title == ''">{{errorMessage.title[0].message}}</span>
             </div>
             <div class="p-field p-grid">
                 <label for="category"> Catégorie </label>
                 <input id="category" maxlength="25" type="text" formControlName="category" pInputText>
 
-                 <span class="pi pi-exclamation-triangle" *ngIf="submitted && cat.value.category == ''">{{errorMessage.category[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.category == ''">{{errorMessage.category[0].message}}</span>
             </div>
             <div class="p-field p-grid">
                 <label for="duration"> Durée du film </label>
@@ -21,19 +23,24 @@
                     formControlName="duration">
                 </p-inputNumber>
 
-                 <span class="pi pi-exclamation-triangle" *ngIf="submitted && cat.value.duration == ''">{{errorMessage.duration[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.duration == ''">{{errorMessage.duration[0].message}}</span>
             </div>
             <div class="p-field p-grid">
                 <label for="director"> Réalisateur </label>
                 <input id="director" minlength="3" maxlength="25" type="text" formControlName="director" pInputText>
 
-                 <span class="pi pi-exclamation-triangle" *ngIf="submitted && cat.value.director == ''">{{errorMessage.director[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.director == ''">{{errorMessage.director[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.director.length < 3">{{errorMessage.director[1].message}}</span>
             </div>
             <div class="p-field p-grid">
                 <label for="actor"> Acteur </label>
                 <input id="actor" minlength="3" maxlength="25" type="text" formControlName="actor" pInputText>
 
-                 <span class="pi pi-exclamation-triangle" *ngIf="submitted && cat.value.actor == ''">{{errorMessage.actor[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.actor == ''">{{errorMessage.actor[0].message}}</span>
             </div>
         </div>
         <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-book"

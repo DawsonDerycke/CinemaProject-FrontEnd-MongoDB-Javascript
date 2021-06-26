@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ApiCategoriesService } from '../services/apiCategories.service';
 import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Categories } from '../models/categories';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-categories',
@@ -11,7 +12,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
   providers: [MessageService, ConfirmationService],
   styleUrls: ['./list-categories.component.scss']
 })
-export class ListCategoriesComponent implements AfterViewInit, OnInit {
+export class ListCategoriesComponent implements OnInit {
   @ViewChild('dt') dt!: Table;
   cat!: FormGroup;
   categories: any;
@@ -45,15 +46,15 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
       { type: 'required', message: ' Ce champ est obligatoire !' },
     ],
   }
-  
+  form: any;
+
   constructor(
-    private apiService: ApiCategoriesService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-    private formBuilder: FormBuilder,
-    private cd: ChangeDetectorRef,
+    private _apiService: ApiCategoriesService,
+    private _messageService: MessageService,
+    private _confirmationService: ConfirmationService,
+    private _formBuilder: FormBuilder,
   ) {
-    this.cat = this.formBuilder.group({
+    this.cat = this._formBuilder.group({
       title: ["", [Validators.required, Validators.maxLength(80)]],
       category: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       duration: ["", [Validators.required, Validators.min(5), Validators.max(600)]],
@@ -79,14 +80,6 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
     ];
   }
 
-  ngAfterViewInit() {
-      this.loading = false;
-
-      this.categoryDialog = false;
-
-      this.cd.detectChanges();
-  }
-
   // Recherche
   applyFilterGlobal($event: any, stringVal: any) {
     this.dt!.filterGlobal(($event.target as HTMLInputElement).value, 'contains');
@@ -94,7 +87,7 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
 
   // Récupérer les données
   getApi() {
-    this.apiService.getCategories().subscribe(data => {
+    this._apiService.getCategories().subscribe(data => {
       this.categories = data;
 
     }, error => {
@@ -113,7 +106,9 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
 
   // Boite modif
   editCategory(rowData: any) {
-    console.log(rowData);
+    let id = rowData._id;
+    this._apiService.getCategoryId(id).pipe(first()).subscribe(x => this.cat.patchValue(x));
+
     this.modelCategory = rowData;
     this.categoryDialog = true;
   }
@@ -121,26 +116,33 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
   // Sauve modif
   saveUpdate() {
     let id = this.modelCategory._id;
-    let category = this.modelCategory;
+    let category = this.cat.value;
 
-    this.confirmationService.confirm({
-      message: 'Voulez-vous mettre à jour cette information: \"' + category.title + '\" ?',
-      header: 'Confirmer',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.apiService.updateOneCategory(id, category).subscribe(data => {
-          console.log(data);
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
-          this.categoryDialog = false;
+      this._confirmationService.confirm({
+        message: 'Voulez-vous mettre à jour cette information: \"' + category.title + '\" ?',
+        header: 'Confirmer',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this._apiService.updateCategory(id, category).subscribe(data => {
+            console.log(data);
+            
+            this._messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+            this.categoryDialog = false;
 
-        }, error => {
-          console.log(error);
-          this.msgs1 = [
-            { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
-          ];
-        });
-      }
+            this.refreshList();
+          }, error => {
+            console.log(error);
+            this.msgs1 = [
+              { severity: 'error', summary: 'Erreur', detail: 'Impossible de modifier l\'utilisateur !' },
+            ];
+          });
+        }
     });
+  }
+
+  // Refresh 
+  refreshList(): void {
+    this.getApi();
   }
 
   // Supprimer
@@ -148,15 +150,16 @@ export class ListCategoriesComponent implements AfterViewInit, OnInit {
     this.modelCategory = rowData;
     let idToDelete = rowData._id;
 
-    this.confirmationService.confirm({
-      message: 'Voulez-vous vraiment supprimer ' + this.modelCategory.title + '?',
+    this._confirmationService.confirm({
+      message: 'Voulez-vous vraiment supprimer \"' + this.modelCategory.title + '\" ?',
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.deleteOneCategory(idToDelete).subscribe(data => {
+        this._apiService.deleteCategory(idToDelete).subscribe(data => {
           this.categories = data;
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+          this._messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
 
+          this.refreshList();
         }, error => {
           this.msgs1 = [
             { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer le film !' },

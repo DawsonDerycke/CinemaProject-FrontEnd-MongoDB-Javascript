@@ -5,6 +5,9 @@ import { MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Movies } from '../models/movies';
 import { DatePipe } from '@angular/common';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-list-movies',
@@ -39,13 +42,13 @@ export class ListMoviesComponent implements OnInit {
   }
 
   constructor(
-    private apiService: ApiMoviesService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-    private datePipe: DatePipe,
-    private formBuilder: FormBuilder,
+    private _apiService: ApiMoviesService,
+    private _messageService: MessageService,
+    private _confirmationService: ConfirmationService,
+    private _datePipe: DatePipe,
+    private _formBuilder: FormBuilder,
   ) {
-    this.movie = this.formBuilder.group({
+    this.movie = this._formBuilder.group({
       title: ["", [Validators.required, Validators.max(80)]],
       price: ["", [Validators.required, Validators.min(1), Validators.max(15)]],
       yearRequired: ["", [Validators.required, Validators.min(0), Validators.max(18)]],
@@ -73,7 +76,7 @@ export class ListMoviesComponent implements OnInit {
 
   // Récupérer les données
   getApi() {
-    this.apiService.getMovies().subscribe(data => {
+    this._apiService.getMovies().subscribe(data => {
       this.movies = data;
 
     }, error => {
@@ -91,14 +94,17 @@ export class ListMoviesComponent implements OnInit {
   }
   // Boite modif
   editMovie(rowData: any) {
+    let id = rowData._id;
+    
+    this._apiService.getMoviesId(id).pipe(first()).subscribe(x => this.movie.patchValue(x));
+
     this.modelMovie = {
       _id: rowData._id,
       title: rowData.title,
       price: rowData.price,
       yearRequired: rowData.yearRequired,
-      releaseDate: this.datePipe.transform(rowData.releaseDate, 'yyyy-MM-dd')
+      releaseDate: this._datePipe.transform(rowData.releaseDate, 'dd-MM-yyyy')
     };
-
     console.log(this.modelMovie);
     this.movieDialog = true;
   }
@@ -106,17 +112,19 @@ export class ListMoviesComponent implements OnInit {
   // Sauve modif
   saveUpdate() {
     let id = this.modelMovie._id;
-    let movie = this.modelMovie;
-
-    this.confirmationService.confirm({
+    let movie = this.movie.value;
+    
+    this._confirmationService.confirm({
       message: 'Voulez-vous mettre à jour cette information \"' + movie.title + '\" ?',
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.updateOneMovie(id, movie).subscribe(data => {
+        this._apiService.updateMovie(id, movie).subscribe(data => {
           console.log(data);
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
+          this._messageService.add({ severity: 'success', summary: 'Successful', detail: 'User updated', life: 3000 });
           this.movieDialog = false;
+
+          this.refreshList();
 
         }, error => {
           console.log(error);
@@ -128,20 +136,26 @@ export class ListMoviesComponent implements OnInit {
     });
   }
 
+  // Refresh 
+  refreshList(): void {
+    this.getApi();
+  }
+
   // Supprimer
   deleteMovie(rowData: any) {
     this.modelMovie = rowData;
     let idToDelete = rowData._id;
 
-    this.confirmationService.confirm({
-      message: 'Voulez-vous vraiment supprimer ' + this.modelMovie.title + '?',
+    this._confirmationService.confirm({
+      message: 'Voulez-vous vraiment supprimer \"' + this.modelMovie.title + '\" ?',
       header: 'Confirmer',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.deleteOneMovie(idToDelete).subscribe(data => {
+        this._apiService.deleteMovie(idToDelete).subscribe(data => {
           this.movies = data;
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+          this._messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
 
+          this.refreshList();
         }, error => {
           this.msgs1 = [
             { severity: 'error', summary: 'Erreur', detail: 'Impossible de supprimer le film !' },

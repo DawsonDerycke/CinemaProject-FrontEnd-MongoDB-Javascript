@@ -40,9 +40,9 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { CrudCategoriesComponent } from './crud-categories/crud-categories.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { UpperCasePipe } from './upper-case.pipe';
-import { ButtonAddComponent } from './button-add/button-add.component';
 import { ButtonAddUserComponent } from './button-add-user/button-add-user.component';
 import { ButtonAddMovieComponent } from './button-add-movie/button-add-movie.component';
+import { ButtonAddCategoryComponent } from './button-add-category/button-add-category.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +54,9 @@ import { ButtonAddMovieComponent } from './button-add-movie/button-add-movie.com
     CrudCategoriesComponent,
     ListCategoriesComponent,
     UpperCasePipe,
-    ButtonAddComponent,
     ButtonAddUserComponent,
     ButtonAddMovieComponent,
+    ButtonAddCategoryComponent,
   ],
   imports: [
     BrowserModule,
