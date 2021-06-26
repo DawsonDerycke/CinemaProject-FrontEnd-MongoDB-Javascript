@@ -21,6 +21,7 @@ export class CrudUsersComponent implements OnInit {
   errorMessage = {
     'firstName': [
       { type: 'required', message: ' Ce champ est obligatoire !' },
+      { type: 'length', message: ' Le champ doit contenir minimum 2 caractères !' },
     ],
     'year': [
       { type: 'required', message: ' Ce champ est obligatoire !' },

@@ -16,6 +16,8 @@
 
                 <span class="pi pi-exclamation-triangle"
                     *ngIf="submitted && cat.value.category == ''">{{errorMessage.category[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.category">{{errorMessage.category[1].message}}</span>
             </div>
             <div class="p-field p-grid">
                 <label for="duration"> Durée du film </label>
@@ -33,7 +35,7 @@
                 <span class="pi pi-exclamation-triangle"
                     *ngIf="submitted && cat.value.director == ''">{{errorMessage.director[0].message}}</span>
                 <span class="pi pi-exclamation-triangle"
-                    *ngIf="submitted && cat.value.director.length < 3">{{errorMessage.director[1].message}}</span>
+                    *ngIf="submitted && cat.value.director">{{errorMessage.director[1].message}}</span>
             </div>
             <div class="p-field p-grid">
                 <label for="actor"> Acteur </label>
@@ -41,6 +43,8 @@
 
                 <span class="pi pi-exclamation-triangle"
                     *ngIf="submitted && cat.value.actor == ''">{{errorMessage.actor[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && cat.value.actor">{{errorMessage.actor[1].message}}</span>
             </div>
         </div>
         <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-book"

@@ -105,7 +105,6 @@ export class ListMoviesComponent implements OnInit {
       yearRequired: rowData.yearRequired,
       releaseDate: this._datePipe.transform(rowData.releaseDate, 'dd-MM-yyyy')
     };
-    console.log(this.modelMovie);
     this.movieDialog = true;
   }
 

@@ -9,6 +9,8 @@
 
                 <span class="pi pi-exclamation-triangle"
                     *ngIf="submitted && user.value.firstName == ''">{{errorMessage.firstName[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && user.value.firstName">{{errorMessage.firstName[1].message}}</span>
             </div>
             <div class="p-field">
                 <label for="year"> Age </label>

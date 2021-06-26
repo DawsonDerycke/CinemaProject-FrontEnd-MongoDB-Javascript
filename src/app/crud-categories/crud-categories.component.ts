@@ -25,16 +25,18 @@ export class CrudCategoriesComponent implements OnInit {
     ],
     'category': [
       { type: 'required', message: ' Ce champ est obligatoire !' },
+      { type: 'length', message: ' Le champ doit contenir minimum 3 caractères !' },
     ],
     'duration': [
       { type: 'required', message: ' Insérez une durée entre 5 et 600 minutes !' },
     ],
     'director': [
       { type: 'required', message: ' Ce champ est obligatoire !' },
-      { type: 'minlenght', message: ' Le champ doit contenir minimum 3 caractères !' },
+      { type: 'length', message: ' Le champ doit contenir minimum 3 caractères !' },
     ],
     'actor': [
       { type: 'required', message: ' Ce champ est obligatoire !' },
+      { type: 'length', message: ' Le champ doit contenir minimum 3 caractères !' },
     ],
   }
 
