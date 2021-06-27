@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ApiCustomersService } from '../services/apiCustomers.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud-users',
@@ -38,6 +39,7 @@ export class CrudUsersComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _apiCustomersService: ApiCustomersService,
     private _messageService: MessageService,
+    private _router: Router,
   ) {
 
     this.user = this._formBuilder.group({
@@ -67,6 +69,7 @@ export class CrudUsersComponent implements OnInit {
         this._messageService.add({ severity: 'success', summary: 'Création client:', detail: 'Ajout réussi' });
 
         this.user.reset();
+        this._router.navigate(['../users']);
 
       }, error => {
         console.log(error);

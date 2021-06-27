@@ -1,0 +1,21 @@
+.toolbar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 60px;
+    display: flex;
+    padding-left: 50px;
+    align-items: center;
+    background-color: #4c00c5;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    margin: 82px auto 32px;
+    flex-direction: column;
+    align-items: center;
+}

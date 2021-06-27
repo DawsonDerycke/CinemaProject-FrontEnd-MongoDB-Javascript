@@ -82,6 +82,7 @@
 
             <span class="pi pi-exclamation-triangle"
                 *ngIf="movie.value.releaseDate == ''">{{errorMessage.releaseDate[0].message}}</span>
+            <span class="pi pi-exclamation-triangle">{{errorMessage.releaseDate[1].message}}</span>
         </div>
     </ng-template>
 

@@ -4,6 +4,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ApiMoviesService } from '../services/apiMovies.service';
 import * as moment from 'moment';
 import { YearRequired } from '../interface/year-required';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud-movies',
@@ -41,6 +42,7 @@ export class CrudMoviesComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _apiMoviesService: ApiMoviesService,
     private _messageService: MessageService,
+    private _router: Router,
   ) {
 
     this.year = [
@@ -79,6 +81,7 @@ export class CrudMoviesComponent implements OnInit {
         this._messageService.add({ severity: 'success', summary: 'Création film:', detail: 'Ajout réussi' });
 
         this.movie.reset();
+        this._router.navigate(['../movies']);
 
       }, error => {
         console.log(error);

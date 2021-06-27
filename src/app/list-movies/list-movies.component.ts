@@ -6,8 +6,6 @@ import { Movies } from '../models/movies';
 import { DatePipe } from '@angular/common';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import * as moment from 'moment';
-
 
 @Component({
   selector: 'app-list-movies',
@@ -38,6 +36,7 @@ export class ListMoviesComponent implements OnInit {
     ],
     'releaseDate': [
       { type: 'required', message: ' Ajoutez une date !' },
+      { type: 'required', message: ' Insérez votre date sous le format \'YYYY-MM-DD\' !' },
     ],
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ApiCategoriesService } from '../services/apiCategories.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud-categories',
@@ -44,6 +45,7 @@ export class CrudCategoriesComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _apiCategoriesService: ApiCategoriesService,
     private _messageService: MessageService,
+    private _router: Router,
   ) {
     this.cat = this._formBuilder.group({
       title: ["", [Validators.required, Validators.maxLength(80)]],
@@ -68,7 +70,8 @@ export class CrudCategoriesComponent implements OnInit {
         this._messageService.add({ severity: 'success', summary: 'Création catégorie:', detail: 'Ajout réussi' });
 
         this.cat.reset();
-
+        this._router.navigate(['../categories']);
+        
       }, error => {
         console.log(error);
         this._messageService.add({ severity: 'error', summary: 'Création catégorie:', detail: 'Une erreur est survenue' });
