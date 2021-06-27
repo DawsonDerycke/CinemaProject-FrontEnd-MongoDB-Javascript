@@ -1,6 +1,6 @@
 <p-messages [(value)]="msgs1" [enableService]="false"></p-messages>
 
-<p-table #dt [columns]="cols" [value]="movies" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+<p-table #dt [columns]="cols" [value]="categories" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
     currentPageReportTemplate="Affichage de {first} à {last} sur {totalRecords} enregistrement(s)"
     [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-customers p-datatable-gridlines">
 
@@ -9,7 +9,7 @@
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Recherche">
         </span>
-        <app-button-add-movie></app-button-add-movie>
+        <app-button-add-category></app-button-add-category>
     </ng-template>
 
     <ng-template pTemplate="header" let-columns>
@@ -24,72 +24,71 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
             <td *ngFor="let col of columns">
-                <span *ngIf="col.field === 'title'">
+                <span *ngIf="col.field !== 'duration'">
                     {{rowData[col.field] | titlecase}}
                 </span>
-                <span *ngIf="col.field === 'releaseDate'">
-                    {{rowData[col.field] | date:'mediumDate'}}
-                </span>
-                <span *ngIf="col.field !== 'title' && col.field !== 'releaseDate'">
+                <span *ngIf="col.field === 'duration'">
                     {{rowData[col.field]}}
                 </span>
             </td>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                (click)="editMovie(rowData)"></button>
+                (click)="editCategory(rowData)"></button>
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                (click)="deleteMovie(rowData)"></button>
+                (click)="deleteCategory(rowData)"></button>
         </tr>
     </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="movieDialog" [style]="{width: '450px'}" header="Mise à jour du film" [modal]="true"
-    [formGroup]="movie" styleClass="p-fluid">
+<p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Mise à jour de la catégorie" [modal]="true"
+    [formGroup]="cat" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
-            <label for="title">Film</label>
+            <label for="title"> Film </label>
             <input type="text" maxlength="80" pInputText id="title" formControlName="title" required autofocus />
 
             <span class="pi pi-exclamation-triangle"
-                *ngIf="movie.value.title == ''">{{errorMessage.title[0].message}}</span>
+                *ngIf="cat.value.title == ''">{{errorMessage.title[0].message}}</span>
         </div>
         <div class="p-field">
-            <label for="price">Prix</label>
-            <input type="number" [min]="1" [max]="15" pInputText id="price" formControlName="price" required autofocus>
+            <label for="category"> Catégorie </label>
+            <input type="text" maxlength="25" pInputText id="category" formControlName="category" required autofocus />
 
             <span class="pi pi-exclamation-triangle"
-                *ngIf="movie.value.price < 1">{{errorMessage.price[0].message}}</span>
-            <span class="pi pi-exclamation-triangle"
-                *ngIf="movie.value.price > 15">{{errorMessage.price[1].message}}</span>
+                *ngIf="cat.value.category == ''">{{errorMessage.category[0].message}}</span>
         </div>
         <div class="p-field">
-            <label for="yearRequired">Age requis</label>
-            <select pInputText id="yearRequired" formControlName="yearRequired" required autofocus>
-                <option value="">-- Faites un choix: --</option>
-                <option value="0">Tous</option>
-                <option value="3">Maternelle (-3)</option>
-                <option value="7">Enfant (-7)</option>
-                <option value="12">Adolescent (-12)</option>
-                <option value="18">Adulte (-18)</option>
-            </select>
+            <label for="duration"> Durée du film </label>
+            <input type="number" [min]="5" [max]="600" pInputText id="duration" formControlName="duration" required
+                autofocus />
 
             <span class="pi pi-exclamation-triangle"
-                *ngIf="movie.value.yearRequired == ''">{{errorMessage.yearRequired[0].message}}</span>
+                *ngIf="cat.value.duration < 5">{{errorMessage.duration[0].message}}</span>
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.duration > 600">{{errorMessage.duration[1].message}}</span>
+
         </div>
         <div class="p-field">
-            <label for="releaseDate">Date de sortie</label>
-            <input type="text" dateFormat="dd-MM-yyyy" pInputText id="releaseDate"
-                formControlName="releaseDate" required autofocus />
+            <label for="director"> Réalisateur </label>
+            <input type="text" minlength="3" maxlength="25" pInputText id="director" formControlName="director" required
+                autofocus />
 
             <span class="pi pi-exclamation-triangle"
-                *ngIf="movie.value.releaseDate == ''">{{errorMessage.releaseDate[0].message}}</span>
-            <span class="pi pi-exclamation-triangle">{{errorMessage.releaseDate[1].message}}</span>
+                *ngIf="cat.value.director == ''">{{errorMessage.director[0].message}}</span>
+        </div>
+        <div class="p-field">
+            <label for="actor"> Acteur </label>
+            <input type="text" minlength="3" maxlength="25" pInputText id="actor" formControlName="actor" required
+                autofocus />
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="cat.value.actor == ''">{{errorMessage.actor[0].message}}</span>
         </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUpdate()"
-            [disabled]="!movie.valid"></button>
+            [disabled]="!cat.valid"></button>
     </ng-template>
 </p-dialog>
 

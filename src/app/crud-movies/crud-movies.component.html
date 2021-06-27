@@ -1,26 +1,42 @@
-<h3> Création film: </h3>
+<p-toast position="top-left"></p-toast>
 
-<form id="form" [formGroup]="movie">
-    <div class="p-fluid">
-        <div class="p-field">
-            <label for="title">Titre</label>
-            <input id="title" type="text" formControlName="title" pInputText>
-        </div>
-        <div class="p-field">
-            <label for="price">Prix</label>
-            <input id="price" type="text" formControlName="price" pInputText>
-        </div>
-        <div class="p-field">
-            <label for="yearRequired">Age requis</label>
-            <input id="yearRequired" type="text" formControlName="yearRequired" pInputText>
-        </div>
-        <div class="p-field"></div>
-        <div class="p-field p-col-12 p-md-4">
-            <label for="releaseDate">Date de sortie</label>
+<p-panel header="Création film:" [toggleable]="true">
+    <form id="form" [formGroup]="movie">
+        <div class="p-fluid">
+            <div class="p-field">
+                <label for="title">Titre</label>
+                <input id="title" maxlength="80" type="text" formControlName="title" pInputText>
 
-            <p-calendar [(ngModel)]="date3" [showIcon]="true" inputId="icon" formControlName="releaseDate"></p-calendar>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.title == ''">{{errorMessage.title[0].message}}</span>
+            </div>
+            <div class="p-field">
+                <label for="price">Prix</label>
+                <p-inputNumber mode="currency" [min]="1" [max]="15" currency="EUR" formControlName="price">
+                </p-inputNumber>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.price == ''">{{errorMessage.price[0].message}}</span>
+            </div>
+            <div class="p-field">
+                <label for="yearRequired">Age requis</label>
+                <p-dropdown id="yearRequired" [options]="year" optionLabel="name" formControlName="yearRequired"
+                    value="year"> {{year}}</p-dropdown>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.yearRequired == ''">{{errorMessage.yearRequired[0].message}}</span>
+            </div>
+            <div class="p-field">
+                <label for="releaseDate">Date de sortie</label>
+                <p-calendar id="releaseDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                    inputId="navigators" dateFormat="yy-mm-dd" dateType="date" formControlName="releaseDate">
+                </p-calendar>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && movie.value.releaseDate == ''">{{errorMessage.releaseDate[0].message}}</span>
+            </div>
         </div>
-    </div>
-    <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-check"
-        (click)="saveMovies();" [disabled]="!movie.valid"></button>
-</form>
+        <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-check"
+            (click)="saveMovie();" ></button>
+    </form>
+</p-panel>

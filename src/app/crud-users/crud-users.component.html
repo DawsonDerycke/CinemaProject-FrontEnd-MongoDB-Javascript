@@ -1,0 +1,42 @@
+<p-toast position="top-left"></p-toast>
+
+<p-panel header="Création utilisateur:" [toggleable]="true">
+    <form id="form" [formGroup]="user">
+        <div class="p-fluid">
+            <div class="p-field">
+                <label for="firstName"> Prénom </label>
+                <input id="firstName" minlength="2" maxlength="25" type="text" formControlName="firstName" pInputText>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && user.value.firstName == ''">{{errorMessage.firstName[0].message}}</span>
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && user.value.firstName">{{errorMessage.firstName[1].message}}</span>
+            </div>
+            <div class="p-field">
+                <label for="year"> Age </label>
+                <p-inputNumber [min]="1" [max]="120" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"
+                    formControlName="year">
+                </p-inputNumber>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && user.value.year == ''">{{errorMessage.year[0].message}}</span>
+            </div>
+            <div class="p-field">
+                <label for="movie"> Film </label>
+                <input id="movie" maxlength="80" type="text" formControlName="movie" pInputText>
+
+                <span class="pi pi-exclamation-triangle"
+                    *ngIf="submitted && user.value.movie == ''">{{errorMessage.movie[0].message}}</span>
+            </div>
+            <div class="p-field">
+                <label for="seat"> Siège </label>
+                <input id="seat" type="text" maxlength="4" formControlName="seat" pInputText>
+            </div>
+
+            <span class="pi pi-exclamation-triangle"
+                *ngIf="submitted && user.value.seat == ''">{{errorMessage.seat[0].message}}</span>
+        </div>
+        <button pButton type="button" label="Envoyer" class="p-button-raised p-button-rounded" icon="pi pi-user"
+            (click)="saveUser();"></button>
+    </form>
+</p-panel>
