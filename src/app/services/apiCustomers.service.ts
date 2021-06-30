@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Users } from '../models/users';
 
-const apiCustomers = "http://localhost:3000";
+const apiCustomers = "https://projet-mongodb.herokuapp.com/";
 @Injectable({
   providedIn: 'root'
 })
